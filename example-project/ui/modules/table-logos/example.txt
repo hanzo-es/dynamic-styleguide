@@ -1,0 +1,17 @@
+<table>
+  <tr>
+    <th><span>Logo</span>Firstname</th>
+    <th><span>Logo2</span>Lastname</th>
+    <th><span>Logo3</span>Age</th>
+  </tr>
+  <tr>
+    <td>Jill</td>
+    <td>Smith</td>
+    <td>50</td>
+  </tr>
+  <tr>
+    <td>Eve</td>
+    <td>Jackson</td>
+    <td>94</td>
+  </tr>
+</table>

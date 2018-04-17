@@ -1,0 +1,3 @@
+<button class="c-button c-button--hollow-40-dark-hover-invert" data-component="c-button">
+  <span class="button-text">button example</span>
+</button>

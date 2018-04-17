@@ -1,0 +1,32 @@
+.viewer {
+  padding: 2rem;
+  width: 100%;
+  overflow-y: auto;
+  .viewer-header {
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: $color-text;
+    margin-bottom: 1rem;
+  }
+  .viewer-section-title {
+    font-size: 1.6rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    width: 100%;
+    color: $color-text;
+    border-bottom: 1px solid $color-decoration;
+  }
+}
+.viewer-readme {
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+}
+
+.viewer-example {
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

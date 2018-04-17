@@ -1,0 +1,3 @@
+<div class='logo-normal'>
+  <span>Logo example</span>  
+</div>

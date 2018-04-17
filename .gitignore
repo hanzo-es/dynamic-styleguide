@@ -1,0 +1,19 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Ignore OS generated files #
+.DS_Store*
+Thumbs.db
+
+# Ignore hidden folders #
+# This takes care of .tmp, .sass-cache, and many others #
+.*/
+
+public
+node_modules
+dist
+.tmp
+.serve
+
+# Gemfile.lock
+npm-debug.log
+.bundle

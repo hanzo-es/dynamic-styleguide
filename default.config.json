@@ -1,0 +1,10 @@
+{
+  "uiFolder": "ui",
+  "distFolder": "fakeDist",
+  "bundled": {
+    "css" : [],
+    "js" : []
+  },
+  "deployPort": 3000,
+  "pageTitle": "Hanzo Style Guide"
+}

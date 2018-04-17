@@ -1,0 +1,22 @@
+/// This is the hello component
+/// @group c-hello
+///
+/// @variants (General variants)
+/// c-hello--underline: whatever explanation:sgb
+/// c-hello--italic: whatever explanation
+///
+/// @exclusiveVariants (Background color)
+/// c-hello--green: Change the background to green
+/// c-hello--orange: Change the background to orange
+///
+/// @exclusiveVariants (Text color)
+/// c-hello--white-text: Change the color text to to white
+/// c-hello--firebrick-text: Change the color text to to firebrick
+///
+/// @states
+/// is-read: whatever explanation
+/// is-selected: whatever explanation
+
+h2 {
+  background-color: orangered
+}

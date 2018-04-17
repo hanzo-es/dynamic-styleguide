@@ -1,0 +1,30 @@
+<h1 class="viewer-header">Variants</h1>
+
+<div id='styleguide-variants-wrapper'>
+  {{#if variants.title}}
+    <h2 class="viewer-section-title">{{variants.title}}</h2>
+  {{/if}}
+  {{#each variants.entries as |value key|}}
+    <div>
+      <input type="checkbox" class="styleguide-variant-elements" data-variant-key="{{key}}"><b>{{key}}</b>: {{value}}</input>
+    </div>
+  {{/each}}
+
+  {{#each exclusiveVariants as |exclusiveVariant index|}}
+    <br>
+    {{#if exclusiveVariant.title}}
+      <h2 class="viewer-section-title">{{exclusiveVariant.title}}</h2>
+    {{/if}}
+    <fieldset>
+      <div>
+        <input type="radio" name="ev{{index}}" class="styleguide-variant-elements" data-variant-key="" checked>No variant</input>
+      </div>
+      {{#each exclusiveVariant.entries as |value key|}}
+        <div>
+          <input type="radio" name="ev{{index}}" class="styleguide-variant-elements" data-variant-key="{{key}}"><b>{{key}}</b>: {{value}}</input>
+        </div>
+      {{/each}}
+    </fieldset>
+  {{/each}}
+  <br>
+</div>

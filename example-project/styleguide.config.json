@@ -1,0 +1,13 @@
+{
+  "uiFolder": "ui",
+  "distFolder": "fake-dist",
+  "bundled": {
+    "css" : [
+      "assets/css/main.css"
+    ],
+    "js" : [
+      "assets/js/example.js"
+    ]
+  },
+  "pageTitle": "Example Style Guide"
+}

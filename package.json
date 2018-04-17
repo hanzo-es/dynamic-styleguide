@@ -1,0 +1,50 @@
+{
+  "name": "dynamic-styleguide",
+  "version": "0.1.2",
+  "description": "Tool to dynamically generate styleguides from UI library. Used either internaly while working on components/modules or to share documentation with clients.",
+  "main": "index.js",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "browser-refresh ./bin/www",
+    "dev": "NODE_ENV=development browser-refresh ./bin/www"
+  },
+  "bin": {
+    "dynamic-styleguide": "./bin/runner.js"
+  },
+  "keywords": [
+    "dynamic",
+    "style",
+    "guide",
+    "docs",
+    "documentation",
+    "styleguide",
+    "hanzo",
+    "component",
+    "front end",
+    "front-end",
+    "SCSS",
+    "CSS"
+  ],
+  "author": "Hanzo SL",
+  "dependencies": {
+    "babel-preset-env": "^1.6.1",
+    "babel-transform-dir": "^1.0.5",
+    "browser-refresh": "^1.7.2",
+    "codemirror": "^5.36.0",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "get-root-path": "^2.0.2",
+    "hbs": "~4.0.1",
+    "hbs-utils": "^0.0.4",
+    "html-entities": "^1.2.1",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0",
+    "node-sass-middleware": "0.11.0",
+    "sassdoc": "^2.5.0",
+    "shelljs": "^0.8.1",
+    "showdown": "^1.8.6"
+  },
+  "devDependencies": {}
+}
