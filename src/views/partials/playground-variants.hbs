@@ -1,0 +1,36 @@
+<div class="c-variant">
+  {{#each variants as |variant index|}}
+    <div class="c-playground-subsection">
+      {{#if variant.title}}
+        <h2 class="playground-section-title">{{variant.title}}</h2>
+      {{/if}}
+      {{#if (eeq variant.type 'disjunction')}}
+        <div class="variant-group" role="group">
+        {{#each variant.entries as |value key|}}
+          <label class="variant-item">
+            {{key}}
+            <input type="checkbox" class="js-variant-item" data-variant-key="{{key}}">
+            <span class="checkmark"></span>
+          </label>
+        {{/each}}
+        </div>
+      {{/if}}
+      {{#if (eeq variant.type 'exclusive')}}
+        <div class="variant-group" role="radiogroup">
+          <label class="variant-item">
+            No variant
+            <input type="radio" name="ev{{index}}" class="js-variant-item" data-variant-key="" checked>
+            <span class="checkmark"></span>
+          </label>
+        {{#each variant.entries as |value key|}}
+          <label class="variant-item">
+            {{key}}
+            <input type="radio" name="ev{{index}}" class="js-variant-item" data-variant-key="{{key}}">
+            <span class="checkmark"></span>
+          </label>
+        {{/each}}
+        </div>
+      {{/if}}
+    </div>
+  {{/each}}
+</div>

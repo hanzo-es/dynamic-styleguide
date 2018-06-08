@@ -2,57 +2,67 @@ const path = require('path');
 
 const blockLoaderStrategy = require('../lib/block-loader');
 
-const exampleLoader = require('../lib/block-loader/example.loader');
+const rawLoader = require('../lib/block-loader/raw.loader');
 const encodedLoader = require('../lib/block-loader/encoded.loader');
 const readmeLoader = require('../lib/block-loader/readme.loader');
-const renderedLoader = require('../lib/block-loader/rendered.loader');
 const styleCommentLoader = require('../lib/block-loader/style-comment.loader');
-const { loadIfExistOrNull } = require('../lib/file-reader');
 const folderStructure = require('../lib/folder-structure');
-const config = require('../lib/config-loader');
-const { ui: uiProjectFolder} = require ('../lib/project-folders');
+const { ui: uiProjectFolder} = require('../lib/project-folders');
 const {
   README_FILE_NAME,
   EXAMPLE_FILE_NAME
-} = require('../helpers/constants')
+} = require('../helpers/constants');
 
-const pathJoiner = (segments) => path.join(uiProjectFolder , ...segments.filter((segment) => segment ));
+const pathJoiner = (segments) => path.join(uiProjectFolder, ...segments.filter((segment) => segment ));
 
 const elementModel = {
-  params : {
+  params: {
     uiProjectFolder,
-    firstLevel : '',
-    element : '',
-    namespace : ''
+    firstLevel: '',
+    element: '',
+    namespace: ''
   },
 
   getElements(callback) {
     const err = null;
-    const basePath = pathJoiner([this.params.firstLevel,this.params.namespace,this.params.element]);
-
-    const example = blockLoaderStrategy.setLoader(exampleLoader).loadBlock(`${basePath}/${EXAMPLE_FILE_NAME}`);
+    const {firstLevel, namespace, element} = this.params;
+    const basePath = pathJoiner([firstLevel, namespace, element]);
+    const selected = element || namespace || firstLevel || null;
+    const example = blockLoaderStrategy.setLoader(rawLoader).loadBlock(`${basePath}/${EXAMPLE_FILE_NAME}`);
     const encodedHTML = blockLoaderStrategy.setLoader(encodedLoader).loadBlock(example);
-    const readme = blockLoaderStrategy.setLoader(readmeLoader).loadBlock({ path:`${basePath}/${README_FILE_NAME}`});
+    const readme = blockLoaderStrategy.setLoader(readmeLoader).loadBlock({ path: `${basePath}/${README_FILE_NAME}`});
     const styleComment = blockLoaderStrategy.setLoader(styleCommentLoader).loadBlock(`${basePath}/styles.scss`);
-    
+
+    // Get the first level folders. For the current one, get its children
+    const elements = folderStructure(uiProjectFolder, {deepLevel: 1});
+
+    elements.children = elements.children.map( (child) => {
+      if (child.name === firstLevel) {
+        return {
+          ...folderStructure(pathJoiner([firstLevel]), {selected, level: 1}),
+          isFirstLevel: true
+        };
+      }
+      return {...child, isFirstLevel: true};
+    });
+
     const payload = {
-      elementType: this.params.firstLevel,
-      elements: folderStructure(pathJoiner([this.params.firstLevel])),
-      selected: this.params.element,
+      elementType: firstLevel,
+      elements,
+      selected,
       readme,
       example: encodedHTML
     };
 
     styleComment.then(([parsedContent]) => {
-      const { variants, exclusiveVariants } = parsedContent ? parsedContent : {};
-      const hasVariants = !!variants || !!exclusiveVariants
+      const { variants } = parsedContent ? parsedContent : {};
+      const hasVariants = !!variants;
 
-      callback ( err, {
+      callback( err, {
         ...payload,
         variants,
-        exclusiveVariants,
         hasVariants
-      } )
+      } );
     });
   },
 
@@ -61,6 +71,6 @@ const elementModel = {
     this.params = {...params};
   }
 
-}
+};
 
 module.exports = elementModel;

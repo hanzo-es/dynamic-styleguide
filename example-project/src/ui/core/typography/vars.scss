@@ -1,0 +1,126 @@
+//
+$font-family: (
+  work-sans: ('Work Sans', sans-serif),
+  sectra-fine: ('GTSectraFine', serif)
+);
+
+//
+$font-weight: (
+  thin: 100,
+  extra-light: 200,
+  light: 300,
+  regular: 400,
+  medium: 500,
+  semibold: 600,
+  bold: 700,
+  extra-bold: 800,
+  black: 800,
+);
+
+//
+$font-typeset: (
+  sectra-md: (
+    xs: (
+      font-family: font(sectra-fine),
+      font-size: 14px,
+      font-weight: weight(light)
+    ),
+    sm: (
+      font-size: 18px,
+    )
+  ),
+  sectra-title: (
+    xs: (
+      font-family: font(sectra-fine),
+      font-size: 16px,
+      font-weight: weight(light),
+      line-height: 28px
+    ),
+    md: (
+      font-size: 24px,
+    )
+  ),
+  sectra-lg: (
+    xs: (
+      font-family: font(sectra-fine),
+      font-size: 24px,
+      font-weight: weight(light),
+      line-height: 28px,
+      letter-spacing: .015em
+    ),
+    md: (
+      font-size: 32px,
+      line-height: 40px,
+      letter-spacing: .015em
+    )
+  ),
+  sectra-xl: (
+    xs: (
+      font-family: font(sectra-fine),
+      font-size: 24px,
+      font-weight: weight(light)
+    ),
+    md: (
+      font-size: 36px,
+    ),
+    lg: (
+      font-size: 48px,
+    )
+  ),
+  work-sm: (
+    xs: (
+      font-family: font(work-sans),
+      font-size: 11px,
+      line-height: 16px,
+      letter-spacing: .12em,
+      text-transform: uppercase,
+    ),
+    sm: (
+      font-size: 12px,
+      line-height: 13px
+    )
+  ),
+  work-md: (
+    xs: (
+      font-family: font(work-sans),
+      font-size: 14px,
+      line-height: 24px,
+      font-weight: weight(light),
+      letter-spacing: .002em
+    ),
+    md: (
+      font-size: 16px
+    )
+  ),
+  work-lg: (
+    xs: (
+      font-family: font(work-sans),
+      font-size: 14px,
+      line-height: 28px,
+      font-weight: weight(light),
+      letter-spacing: .002em
+    ),
+    md: (
+      font-family: font(work-sans),
+      font-size: 20px,
+      line-height: 28px,
+      font-weight: weight(light),
+    )
+  )
+);
+
+///
+$font-pairings: (
+  md: (
+    primary: sectra-md,
+    secondary: work-sm
+  ),
+  lg: (
+    primary: sectra-lg,
+    secondary: work-md
+  ),
+  xl: (
+    primary: sectra-xl,
+    secondary: work-sm
+  )
+);

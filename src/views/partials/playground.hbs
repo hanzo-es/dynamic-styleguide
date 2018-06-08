@@ -1,0 +1,39 @@
+<div class="m-playground">
+
+  <h1 class="title">
+    {{#if selected }}
+      Viewing {{elementType}}: {{ selected }}
+    {{else if readme }}
+      Viewing {{elementType}}: index.
+    {{else}}
+      Please select an element from the list
+    {{/if}}
+  </h1>
+
+  <div class="content">
+    {{#if readme }}
+      {{#> playground_section title="Readme" }}
+        {{#*inline "slot-content"}}
+          {{> playground_markdown }}
+        {{/inline}}
+      {{/playground_section }}
+    {{/if}}
+
+    {{#if example }}
+      {{#if variants }}  
+        {{#> playground_section title="Variants" }}
+          {{#*inline "slot-content"}}
+            {{> playground_variants }}
+            {{> playground_editor }}
+          {{/inline}}
+        {{/playground_section }}
+      {{/if}}
+
+      {{#> playground_section title="Rendered" variation="c-playground-section--renderer" }}
+        {{#*inline "slot-content"}}
+          {{> playground_renderer }}
+        {{/inline}}
+      {{/playground_section }}
+    {{/if}}
+  </div>
+</div>

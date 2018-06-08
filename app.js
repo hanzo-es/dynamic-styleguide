@@ -1,39 +1,47 @@
 const express = require('express');
 const path = require('path');
-const createError = require('http-errors');
-const { folders, nodeEnv } = require('./src/helpers/constants');
+const { folders, allowedArgs } = require('./src/helpers/constants');
+const parsedArgs = require('./src/lib/parsed-args');
 
-//INIT APP
+// INIT APP
 const app = express();
-
-// ADD VIEW ENGINE
-const viewEngine = require(path.join(folders.lib, 'view-engine'));
-viewEngine(app, folders.views);
 
 // EXPRESS ADDONS
 const expressAddons = require(path.join(folders.lib, 'express-addons'));
 expressAddons(app, express, folders);
 
+// ADD VIEW ENGINE
+const viewEngine = require(path.join(folders.lib, 'view-engine'));
+viewEngine(app, folders.views);
+
 // DEFAULT ENTRY URL FOLDER
 app.use(express.static(folders.public));
 
 // Routing
-app.use(require(folders.routes));
+// Here we can serve and handle the styleguide (UI folder) or the example pages
+// (pages folder). Styleguide is used by default
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+if (!!parsedArgs.get(allowedArgs.deployPages)) {
+  app.use(require(path.join(folders.routes, 'pages')));
+} else {
+  app.use(require(path.join(folders.routes, 'styleguide')));
+}
+
+// Handle 404
+app.use(function(req, res) {
+  res.status(400);
+  res.render('error', {
+    title: '404: File Not Found'
+  });
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === nodeEnv.dev ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+// Handle 500
+app.use(function(error, req, res) {
+  res.status(500);
+  res.render('error', {
+    title: '500: Internal Server Error',
+    error: error
+  });
 });
 
 module.exports = app;

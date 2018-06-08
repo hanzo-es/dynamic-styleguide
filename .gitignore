@@ -17,3 +17,4 @@ dist
 # Gemfile.lock
 npm-debug.log
 .bundle
+.yarn-error.log

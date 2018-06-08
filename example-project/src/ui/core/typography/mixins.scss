@@ -1,0 +1,69 @@
+////
+/// @group typography
+////
+
+///
+@mixin font-face($family, $fileName, $weight, $style) {
+  @font-face {
+    font-family: $family;
+    font-weight: $weight;
+    font-style: $style;
+
+    src: url('#{$fileName}.woff') format('woff');
+  }
+}
+
+///
+@mixin googleFont($family) {
+  @import url('//fonts.googleapis.com/css?family=#{$family}');
+}
+
+///
+@mixin expandSize($typeset, $size) {
+  $props: map-get(map-get($font-typeset, $typeset), $size);
+  @each $prop, $value in $props {
+    #{$prop}: $value;
+  }
+}
+
+///
+@mixin initTypesets {
+  @each $typeset, $font in $font-typeset {
+    %typeset-#{$typeset} {
+      @include setupTypeset($typeset);
+    }
+  }
+}
+
+///
+@mixin useType($typeset) {
+  @include expandSize($typeset, 'xs');
+
+  @include screenMoreThan('xs') {
+    @include expandSize($typeset, 'sm');
+  }
+  @include screenMoreThan('sm') {
+    @include expandSize($typeset, 'md');
+  }
+  @include screenMoreThan('md') {
+    @include expandSize($typeset, 'lg');
+  }
+  @include screenMoreThan('lg') {
+    @include expandSize($typeset, 'xl');
+  }
+}
+
+///
+@mixin useFontPairing($fontPairing) {
+  @if map-has-key($map: $font-pairings, $key: $fontPairing) {
+    .primary {
+      @include useType(map-get(map-get($font-pairings, $fontPairing), primary));
+    }
+
+    .secondary {
+      @include useType(map-get(map-get($font-pairings, $fontPairing), secondary));
+    }
+  } @else {
+    @warn 'Font Pairing #{$fontPairing} not found';
+  }
+}

@@ -1,0 +1,25 @@
+////
+/// @group typography
+////
+
+/// Get the font definition from the font set defined in `_vars.scss`
+/// @param $family {String} the family font name
+/// @return the font definition
+@function font($family) {
+  @if not map-has-key($map: $font-family, $key: $family) {
+    @warn "Font `#{$family}` not found.";
+  }
+
+  @return map-get($map: $font-family, $key: $family);
+}
+
+/// Get the weight font from the font weights defined in `_vars.scss``
+/// @param $weight {String} the weight name defined on the map
+/// @return the font weight value mapped
+@function weight($weight) {
+  @if map-has-key($font-weight, $weight) {
+    @return map-get($font-weight, $weight);
+  } @else {
+    @error "Weight #{$weight} not found";
+  }
+}

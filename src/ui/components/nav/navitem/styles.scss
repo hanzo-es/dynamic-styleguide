@@ -1,0 +1,58 @@
+@import 'ui/index';
+@import 'vars';
+
+.c-navitem {
+  @include useType(default);
+  color: color($santas-grey);
+  line-height: spacing(8);
+  position: relative;
+
+  >.c-sidebar-navlist {
+    display: none;
+  }
+
+  // VARIATIONS
+  &--first-level {
+    padding: 0 0 spacing(8) 0;
+  }
+
+  &--second-level {
+
+    >.section-title {
+      >.menu-link {
+        color: color($santas-grey);
+      }
+    }
+
+    &.is-open {
+      &::before {
+        content: '';
+        position: absolute;
+        left: spacing(-4);
+        top: spacing(1);
+        height: calc(100% - #{spacing(2)});
+        border-left: 1px solid color($whisper);
+      }
+    }
+  }
+
+  // STATES
+  &.is-open {
+    >.section-title {
+      >.menu-link {
+        color: color($black);
+      }
+    }
+
+    >.c-sidebar-navlist {
+      display: block;
+    }
+  }
+
+  &.is-selected {
+    >.section-title>.menu-link,
+    > .menu-link {
+      color: color($wild-watermelon);
+    }
+  }
+}

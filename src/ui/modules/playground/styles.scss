@@ -1,0 +1,17 @@
+@import 'ui/index';
+@import 'vars';
+
+.m-playground {
+  padding: spacing(12) 0 0 0;
+  
+  > .title {
+    @include useType(default);
+    color: color($wild-watermelon);
+    padding: 0 spacing(20);
+  }
+
+  > .content {
+    width: 100%;
+    overflow-y: auto;
+  }
+}

@@ -8,6 +8,6 @@ const ReadmeLoader = {
 
     return converter.makeHtml(markDown);
   }
-}
+};
 
 module.exports = ReadmeLoader;

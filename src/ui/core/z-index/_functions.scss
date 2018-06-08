@@ -1,0 +1,26 @@
+////
+/// @group z-index
+////
+
+
+/// z-index manager function
+/// @param {String} Layer name stored in $z-layers
+@function z($layer) {
+  @if not map-has-key($z-layers, $layer) {
+    @warn "No layer found for `#{$layer}` in $z-layers map. Property omitted.";
+  }
+
+  @return map-get($z-layers, $layer);
+}
+
+/// Increase z-index layer by one
+/// @param {String} Layer name stored in $z-layers
+@function z-above($layer) {
+  @return z($layer) + 1;
+}
+
+/// Decrease z-index layer by one
+/// @param {String} Layer name stored in $z-layers
+@function z-below($layer) {
+  @return z($layer) - 1;
+}

@@ -1,16 +1,27 @@
-const path = require ('path');
-const { rootPath } = require('get-root-path');
-const { uiFolder, distFolder } = require('../lib/config-loader');
+const path = require('path');
+const rootPath = require('../lib/root-path');
+const {
+  uiFolder,
+  distFolder,
+  pages: {
+    pagesFolder,
+    distPagesFolder
+  }
+} = require('../lib/config-loader');
+
 const {
   nodeEnv,
-  EXAMPLE_PROJECT_FOLDER,
-  CONFIG_FILE_NAME
+  EXAMPLE_PROJECT_FOLDER
 } = require('../helpers/constants');
 
-module.exports.ui = (process.env.NODE_ENV === nodeEnv.dev)
-  ? path.join(__dirname, '../..', EXAMPLE_PROJECT_FOLDER, uiFolder)
-  : path.join(rootPath, uiFolder);
+const getPathFolder = (folder) => {
+  const isDevOrTesting = process.env.NODE_ENV === nodeEnv.dev || process.env.NODE_ENV === nodeEnv.test;
+  return (isDevOrTesting)
+    ? path.join(__dirname, '../..', EXAMPLE_PROJECT_FOLDER, folder)
+    : path.join(rootPath, folder);
+};
 
-module.exports.assets = (process.env.NODE_ENV === nodeEnv.dev)
-  ? path.join(__dirname, '../../', EXAMPLE_PROJECT_FOLDER, distFolder)
-  : path.join(rootPath, distFolder);
+module.exports.ui = getPathFolder(uiFolder);
+module.exports.assets = getPathFolder(distFolder);
+module.exports.pages = getPathFolder(pagesFolder);
+module.exports.distPages = getPathFolder(distPagesFolder);

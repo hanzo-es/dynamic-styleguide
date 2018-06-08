@@ -1,0 +1,17 @@
+@import 'ui/index';
+
+.c-playground-subsection {
+    display: flex;
+    border-bottom: 1px solid color($whisper);
+    padding: spacing(9) 0 spacing(12) 0;
+
+  .playground-section-title {
+    @include useType(medium);
+    display: flex;
+    flex: 0 0 spacing(36);
+  }
+
+  &--borderless {
+    border-bottom: none;
+  }
+}

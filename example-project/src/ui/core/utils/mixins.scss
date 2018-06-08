@@ -1,0 +1,27 @@
+//
+@mixin hover() {
+  @include whenNoTouch {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+//
+@mixin whenPrinted {
+  @media print { @content; }
+}
+
+@mixin whenScreen {
+  @media screen { @content; }
+}
+
+@mixin whenNoTouch {
+  html.no-touchevents & { @content; }
+}
+
+@mixin circle($size) {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+}

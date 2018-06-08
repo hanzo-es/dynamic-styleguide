@@ -1,0 +1,22 @@
+@import 'ui/index';
+@import 'vars';
+
+.m-sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  > .content {
+    padding-top: spacing(16);
+  }
+
+  > .footer {
+    position: relative;
+
+    .project-version {
+      @include useType(small);
+      padding: 0;
+      color: color($dark, 'fade');
+    }
+  }
+}

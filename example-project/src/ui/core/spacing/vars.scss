@@ -1,0 +1,12 @@
+$spacing-unit: 4px;
+
+// Standard spacing
+$spacing-xs: spacing(2); // 8px
+$spacing-sm: spacing(4); // 16px
+$spacing-md: spacing(7); // 28px
+$spacing-lg: spacing(9); // 36px
+$spacing-xl: spacing(18); // 72px
+$spacing-xxl: spacing(25); // 100px
+
+// Helpers
+$spacing-mobile: spacing(5); // 20px - Used in mobile layout paddings

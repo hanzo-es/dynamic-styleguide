@@ -1,1 +1,9 @@
-<div class="header-logo"><a href="/" alt="goto index"> index </a></div>
+<div class="c-logo">
+  <a href="{{logo.href}}" alt="{{logo.alt}}">
+    {{#if logo.content }}
+      {{{ logo.content }}}
+    {{else}}
+      <span class="default-image"></span>
+    {{/if}}
+  </a>
+</div>

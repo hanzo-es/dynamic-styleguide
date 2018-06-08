@@ -1,0 +1,21 @@
+////
+/// @group typography
+////
+
+///
+@function font($family) {
+  @if not map-has-key($map: $font-family, $key: $family) {
+    @warn "Font `#{$family}` not found.";
+  }
+
+  @return map-get($map: $font-family, $key: $family);
+}
+
+///
+@function weight($weight) {
+  @if map-has-key($font-weight, $weight) {
+    @return map-get($font-weight, $weight);
+  } @else {
+    @error "Weight #{$weight} not found";
+  }
+}

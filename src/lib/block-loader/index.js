@@ -1,13 +1,13 @@
 
 const blockLoader = {
-  loader : {},
+  loader: {},
 
-  setLoader (loader) {
+  setLoader(loader) {
     this.loader = loader;
     return this;
   },
 
-  loadBlock (data) {
+  loadBlock(data) {
     return this.loader.loadBlock(data);
   }
 };

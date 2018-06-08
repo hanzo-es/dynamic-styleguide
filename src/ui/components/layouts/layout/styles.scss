@@ -1,0 +1,29 @@
+@import 'ui/index';
+@import 'vars';
+
+.c-layout {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+
+  @include slot('.content') {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+
+    @include slot('.sidebar') {
+      width: $layout-sidebar-width;
+      padding: $layout-sidebar-padding;
+      z-index: z-below('header');
+      border-right: 1px solid color($whisper);
+    }
+
+    @include slot('.main') {
+      flex-grow: 1;
+      overflow-y: scroll;
+    }
+  }
+}

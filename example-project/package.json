@@ -4,11 +4,12 @@
   "description": "Example project to use dynamic style guide",
   "main": "index.js",
   "scripts": {
-    "styleguide": "hz-dynamic-stylesheets"
+    "styleguide": "dynamic-styleguide",
+    "pages": "dynamic-styleguide --pages"
   },
   "author": "Hanzo SL",
   "private": true,
   "devDependencies": {
-    "hz-dynamic-stylesheets": "git+ssh://git@repos.codehanzo.com/hanzo/dynamic-styleguide.git#latest"
+    "dynamic-styleguide": "^0.1.2"
   }
 }

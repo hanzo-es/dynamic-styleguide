@@ -5,6 +5,6 @@ const EncodedLoader = {
     const entities = new Entities();
     return entities.encode(rawHTML);
   }
-}
+};
 
 module.exports = EncodedLoader;

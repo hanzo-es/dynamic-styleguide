@@ -1,0 +1,3 @@
+<div class="c-hello {{variant}}">
+  Hi there
+</div>

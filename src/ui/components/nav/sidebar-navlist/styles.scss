@@ -1,0 +1,30 @@
+@import 'ui/index';
+@import 'vars';
+
+.c-sidebar-navlist {
+  display: inline-block;
+  width: 100%;
+  position: relative;
+
+  &::empty {
+    display: none;
+  }
+
+  .section-title {
+    .menu-link {
+      @include useType(default);
+      color: color($arsenic);
+    }
+  }
+
+  .menu-link {
+    @include useType(default);
+    color: color($santas-grey);
+  }
+
+  .list-counter {
+    @include useType(default);
+    color: color($santas-grey);
+    display: none;
+  }
+}

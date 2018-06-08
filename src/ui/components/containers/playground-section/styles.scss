@@ -1,0 +1,37 @@
+@import 'ui/index';
+
+.c-playground-section {
+  padding: spacing(21) spacing(21) 0 spacing(21);
+
+  @include slot('.content') {
+    width: 100%;
+  }
+
+  >.section-title {
+    @include useType(big);
+    width: 100%;
+    color: color($arsenic);
+    line-height: spacing(8);
+  }
+
+  &--renderer {
+    position: relative;
+    border-bottom: none;
+    background-color: color($white-smoke);
+    padding-top: spacing(14);
+    padding-bottom: spacing(21);
+
+    >.section-title {
+      @include useType(medium);
+      padding-bottom: spacing(6);
+    }
+
+    &:before {
+      @include triangle( $color:color(white), $width:16px, $height:15px, $direction:'down');
+      content: '';
+      position: absolute;
+      top: 0;
+      left: calc(50% - 6px);
+    }
+  }
+}

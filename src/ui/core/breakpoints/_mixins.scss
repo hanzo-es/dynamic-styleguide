@@ -1,0 +1,81 @@
+////
+/// @group breakpoints
+////
+
+/// Set styles for @media width less than $size
+/// @param $size {String} the breakpoint size name
+@mixin screenLessThan($size) {
+  $max: false;
+
+  @if $size == sm { $max: $screen-xs-max; }
+  @if $size == md { $max: $screen-sm-max; }
+  @if $size == lg { $max: $screen-md-max; }
+  @if $size == xl { $max: $screen-lg-max; }
+
+  @media (max-width: $max) {
+    @content;
+  }
+}
+
+/// Set styles for @media width more than $size
+/// @param $size {String} the breakpoint size name
+
+@mixin screenMoreThan($size) {
+  $min: false;
+
+  @if $size == xs { $min: $screen-sm-min; }
+  @if $size == sm { $min: $screen-md-min; }
+  @if $size == md { $min: $screen-lg-min; }
+  @if $size == lg { $min: $screen-xl-min; }
+
+  @media (min-width: $min) {
+    @content;
+  }
+}
+
+//// applies mediaquerie to the breakpoint defined in $size
+/// @param $size {String} the breakpoint size name
+@mixin screenSize($size) {
+  $min: false;
+  $max: false;
+
+  @if $size == xs {
+    $min: 0;
+    $max: $screen-xs-max;
+  }
+
+  @if $size == sm {
+    $min: $screen-sm-min;
+    $max: $screen-sm-max;
+  }
+
+  @if $size == md {
+    $min: $screen-md-min;
+    $max: $screen-md-max;
+  }
+
+  @if $size == lg {
+    $min: $screen-lg-min;
+    $max: $screen-lg-max;
+  }
+
+  @media (min-width: $min) and (max-width: $max) {
+    @content;
+  }
+}
+
+/// Hidden content until the current breakpoint is more than $size
+/// @param $size {String} the breakpoint size name
+@mixin hiddenUntil($size) {
+  @include screenLessThan($size) {
+    display: none !important;
+  }
+}
+
+/// Hidden content when the current breakpoint is more than $size
+/// @param $size {String} the breakpoint size name
+@mixin visibleUntil($size) {
+  @include screenMoreThan($size) {
+    display: none !important;
+  }
+}

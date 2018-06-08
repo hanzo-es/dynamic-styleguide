@@ -1,3 +1,0 @@
-<div class="c-hello {{variant}}">
-  <h2>This is a foo-component 1</h2>
-</div>

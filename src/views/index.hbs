@@ -1,26 +1,10 @@
-<div class="main-wrapper">
-  <div class="header">
-    {{> logo }}
-    <div class="header-nav">
-      {{> header_nav_list }}
+<div class="c-layout">
+  <div class="slot content">
+    <div class="slot sidebar">
+      {{> sidebar this }}
+    </div>
+    <div class="slot main">
+      {{> playground this }}
     </div>
   </div>
-  <div class="main-content">
-    <div class="sidebar">
-      <h2>Elements List</h2>
-      <div class="sidebar-nav">
-        {{> sidebar_nav_list this }}
-      </div>
-    </div>
-    <div class="viewer">
-      {{#if readme}}
-        <div class="viewer-readme markdown">
-          {{{readme}}}
-        </div>
-      {{else}}
-        <h1>Please select an element from the list</h1>
-      {{/if}}
-    </div>
-  </div>
-  <div class="footer"></div>
 </div>

@@ -1,0 +1,23 @@
+{{#each elements as |element| }}
+  {{#if (eeq element.type 'directory') }}
+    <li class="c-navitem {{ter element.isSelected 'is-selected' ''}} {{ter element.isOpen 'is-open' ''}} c-navitem--{{itemAt ../levelClasses element.level}}">
+      {{#if element.isFirstLevel}}
+        <h2 class="section-title">
+          <a class="menu-link" href="/{{../elementsUrlDirectory}}/{{element.url}}">{{capitalize element.name}}</a>
+        </h2>
+        <div class="list-counter">8 Items</div>
+      {{else}}
+        {{#if element.hasClickableChildren}}
+            <h3 class="section-title"><a class="menu-link" href="/{{../elementsUrlDirectory}}/{{element.url}}">{{capitalize element.name}}</a></h3>
+        {{else}}
+          <a class="menu-link" href="/{{../elementsUrlDirectory}}/{{element.url}}">{{capitalize element.name}}</a>
+        {{/if}}
+      {{/if}}
+      {{#if element.hasClickableChildren}}
+        <ul class="c-sidebar-navlist">
+          {{> sub_menu elements=element.children elementsUrlDirectory=../elementsUrlDirectory selected=../selected levelClasses=../levelClasses}}
+        </ul>
+      {{/if}}
+    </li>
+  {{/if}}
+{{/each}}

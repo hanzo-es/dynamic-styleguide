@@ -1,3 +1,0 @@
-<div>
-  <h1>This is a some-component 2</h1>
-</div>

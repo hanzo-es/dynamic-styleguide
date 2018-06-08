@@ -1,0 +1,73 @@
+////
+/// @group typography
+////
+
+
+// Define the font set here
+$font-family: (
+  helvetica: ('Helvetica', sans-serif),
+  code: (monospace),
+);
+
+/// Define available font weights
+$font-weight: (
+  thin: 100,
+  extra-light: 200,
+  light: 300,
+  regular: 400,
+  medium: 500,
+  semibold: 600,
+  bold: 700,
+  extra-bold: 800,
+  black: 800,
+);
+
+/// Define typesets & breakpoint variations
+$font-typeset: (
+  default: (
+    xs: (
+      font-family: font(helvetica),
+      font-weight: weight(regular),
+      font-size: 16px
+    )
+  ),
+  small: (
+    xs: (
+      font-family: font(helvetica),
+      font-weight: weight(regular),
+      font-size: 14px,
+    )
+  ),
+  markdown-text: (
+    xs: (
+      font-family: font(helvetica),
+      font-weight: weight(regular),
+      font-size: 14px,
+      line-height: 24px
+    )
+  ),
+  medium: (
+    xs: (
+      font-family: font(helvetica),
+      font-weight: weight(regular),
+      font-size: 20px, 
+      line-height: 30px
+    )
+  ),
+  big: (
+    xs: (
+      font-family: font(helvetica),
+      font-weight: weight(regular),
+      font-size: 32px, 
+      line-height: 48px
+    )
+  ),
+  code: (
+    xs: ( 
+      font-family: font(code), 
+      font-weight: weight(regular), 
+      font-size: 14px, 
+      line-height: 20px
+    )
+  )
+);

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const ContentModel = require('../models/content.model');
-const AssetsModel =require('../models/assets.model');
+const AssetsModel = require('../models/assets.model');
 
 const loadElementDetails = (req, res) => {
   const stylesheets = AssetsModel.getCSSDependencies();
@@ -14,13 +14,12 @@ const loadElementDetails = (req, res) => {
       scripts,
       ...payload,
       layout: false,
-    })
+    });
   });
-}
+};
 
-router.get('/:firstLevel', loadElementDetails)
+router.get('/:firstLevel', loadElementDetails);
 router.get('/:firstLevel/:element', loadElementDetails);
 router.get('/:firstLevel/:namespace/:element', loadElementDetails);
 
-
-module.exports = router
+module.exports = router;

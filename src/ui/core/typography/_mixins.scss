@@ -1,0 +1,62 @@
+////
+/// @group typography
+////
+
+/// Adds a fontFace to a component
+/// @param $family, the font to be added from the set defined on _vars.scss 
+/// @param $filename the filename to load
+/// @param $weight the font weight 
+/// @param $style the font variant
+@mixin fontFace($family, $fileName, $weight, $style) {
+  @font-face {
+    font-family: $family;
+    font-weight: $weight;
+    font-style: $style;
+
+    src: url('#{$fileName}.woff') format('woff');
+  }
+}
+
+/// Imports a font from googlefonts
+/// @param $family the font to be loaded
+@mixin googleFont($family) {
+  @import url('//fonts.googleapis.com/css?family=#{$family}');
+}
+
+/// Expands the mapped props from a typeset and a breakpoint
+/// @param $typeset a valid typeset from the _vars.scss definitions
+/// @param $size the size from the $typeset to be expanded
+@mixin expandSize($typeset, $size) {
+  $props: map-get(map-get($font-typeset, $typeset), $size);
+  @each $prop, $value in $props {
+    #{$prop}: $value;
+  }
+}
+
+/// Creates sass extends from available typesets
+@mixin initTypesets {
+  @each $typeset, $font in $font-typeset {
+    %typeset-#{$typeset} {
+      @include setupTypeset($typeset);
+    }
+  }
+}
+
+/// Adds the font for the breakpoint
+/// @param $typeset the typeset to be expanded
+@mixin useType($typeset) {
+  @include expandSize($typeset, 'xs');
+
+  @include screenMoreThan('xs') {
+    @include expandSize($typeset, 'sm');
+  }
+  @include screenMoreThan('sm') {
+    @include expandSize($typeset, 'md');
+  }
+  @include screenMoreThan('md') {
+    @include expandSize($typeset, 'lg');
+  }
+  @include screenMoreThan('lg') {
+    @include expandSize($typeset, 'xl');
+  }
+}

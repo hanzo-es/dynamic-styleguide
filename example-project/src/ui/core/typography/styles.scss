@@ -1,0 +1,27 @@
+@import 'ui/index';
+
+@include font-face('GTSectraFine', './assets/GT-Sectra-Fine-Regular', 400, normal);
+@include font-face('GTSectraFine', './assets/GT-Sectra-Fine-Regular-Italic', 400, italic);
+@include font-face('GTSectraFine', './assets/GT-Sectra-Fine-Book', 300, normal);
+@include font-face('GTSectraFine', './assets/GT-Sectra-Fine-Book-Italic', 300, italic);
+@include googleFont('Work+Sans:200,300,400,500,600');
+
+//
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  -webkit-font-feature-settings: 'kern' 1;
+     -moz-font-feature-settings: 'kern' 1;
+}
+
+a {
+  text-decoration: none;
+
+  color: color($arsenic);
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}

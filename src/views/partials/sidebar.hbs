@@ -1,0 +1,28 @@
+<div class="m-sidebar">
+
+  <div class="header">
+    <div class="logo">
+      {{> logo logo=logo}}
+    </div>
+
+    {{#if sideMenuLinks }}
+    <ul class="c-sidebar-navlist">
+      {{#each sideMenuLinks as |link|}} 
+        {{> menu_link link=link }} 
+      {{/each}}
+    </ul>
+    {{/if}}
+  </div>
+
+  <div class="content">
+    <ul class="c-sidebar-navlist">
+      {{> sub_menu elements=elements.children selected=selected }}
+    </ul>
+  </div>
+
+  <div class="footer">
+    <div class="project-version">
+      Version: {{ projectVersion }}
+    </div>
+  </div>
+</div>

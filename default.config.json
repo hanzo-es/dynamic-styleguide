@@ -1,10 +1,25 @@
 {
   "uiFolder": "ui",
-  "distFolder": "fakeDist",
+  "distFolder": "demo-dist",
+  "deployPort": 3000,
   "bundled": {
     "css" : [],
     "js" : []
   },
-  "deployPort": 3000,
-  "pageTitle": "Hanzo Style Guide"
+
+  "pages": {
+    "pagesFolder": "pages",
+    "distPagesFolder": "demo-dist/pages",
+    "pagesDeployPort": 3001,
+    "elementsUrlDirectory": "view"
+  },
+
+  "contents": {
+    "pageTitle": "Hanzo Style Guide",
+    "logo": {
+      "alt": "back to home",
+      "href": "/"
+    },
+    "sideMenuLinks": []
+  }
 }

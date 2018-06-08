@@ -1,0 +1,270 @@
+@import 'ui/index';
+
+.c-markdown {
+  @include useType(default);
+  color: color($dark, 'light');
+  border-bottom: 1px solid color($whisper);
+  
+  a {
+    @include colorizeLink($dark);
+    text-decoration: none;
+
+    &:hover,
+    &:active {
+      outline: 0;
+    }
+  }
+
+  ::-moz-selection {
+    background: color($selection);
+    color: color($dark);
+  }
+
+  ::selection {
+    background: color($selection);
+    color: color($dark);
+  }
+
+  a::-moz-selection {
+    background: color($selection);
+    color: color($dark);
+  }
+
+  a::selection {
+    background: color($selection);
+    color: color($dark);
+  }
+
+  p {
+    @include useType(markdown-text);
+    margin: 10px 0 spacing(5) 0;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: color($dark);
+  }
+
+  h4,
+  h5,
+  h6 {
+    color: color($dark, 'light');
+  }
+
+  h1 {
+    @include useType(medium);
+    padding-bottom: spacing(3);
+  }
+
+  h2 {
+    @include useType(medium);
+    margin: spacing(8) 0;
+  }
+
+  h3 {
+    @include useType(default);
+    margin: spacing(6) 0;
+  }
+
+  h4 {
+    @include useType(default);
+    margin: spacing(5) 0;
+  }
+
+  h5 {
+    @include useType(default);
+    margin: spacing(5) 0;
+  }
+
+  h6 {
+    @include useType(default);
+    margin: spacing(5) 0;
+  }
+
+  blockquote {
+    @include useType(medium);
+    color: color($arsenic);
+    margin: 0;
+    padding: 0 0 0 spacing(4);
+    border-left: 2px color($wild-watermelon) solid;
+  }
+
+  hr {
+    display: block;
+    border: 0;
+    height: spacing(1);
+    background-color: color($whisper);
+    margin: spacing(4) 0;
+    padding: 0;
+  }
+
+  pre,
+  code,
+  kbd,
+  samp {
+    @include useType(code);
+    color: color($dark);
+    background-color: color($white-smoke);
+  }
+
+  code {
+    padding: spacing(1) spacing(2);
+  }
+
+  pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    padding: spacing(4);
+    
+    code {
+      padding: 0;
+    }
+  }
+
+  b,
+  strong {
+    font-weight: weight(bold);
+  }
+
+  dfn {
+    font-style: italic;
+  }
+
+  ins {
+    background: #ff9;
+    color: color($dark);
+    text-decoration: none;
+  }
+
+  mark {
+    background: #ff0;
+    color: color($dark);
+    font-style: italic;
+    font-weight: weight(bold);
+  }
+
+  sub,
+  sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+
+  sup {
+    top: spacing(2);
+  }
+
+  sub {
+    bottom: spacing(-1);
+  }
+
+  ul,
+  ol {
+    margin: spacing(4) 0;
+    padding: 0 0 0 spacing(8);
+  }
+  
+  ul {
+    list-style-type: disc;
+  }
+
+  li p:last-child {
+    margin: 0;
+  }
+
+  dd {
+    margin: 0 0 0 spacing(8);
+  }
+
+  img {
+    border: 0;
+    -ms-interpolation-mode: bicubic;
+    vertical-align: middle;
+  }
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  td {
+    vertical-align: top;
+  }
+
+  @media print {
+    * {
+      background: transparent !important;
+      color: black !important;
+      filter: none !important;
+      -ms-filter: none !important;
+    }
+
+    body {
+      font-size: 12pt;
+      max-width: 100%;
+    }
+
+    a,
+    a:visited {
+      text-decoration: underline;
+    }
+
+    hr {
+      height: 1px;
+      border: 0;
+      border-bottom: 1px solid black;
+    }
+
+    a[href]:after {
+      content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+      content: " (" attr(title) ")";
+    }
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+      content: "";
+    }
+
+    pre,
+    blockquote {
+      border: 1px solid #999;
+      padding-right: spacing(4);
+      page-break-inside: avoid;
+    }
+
+    tr,
+    img {
+      page-break-inside: avoid;
+    }
+
+    img {
+      max-width: 100% !important;
+    }
+
+    p,
+    h2,
+    h3 {
+      orphans: 3;
+      widows: 3;
+    }
+
+    h2,
+    h3 {
+      page-break-after: avoid;
+    }
+  }
+}

@@ -5,6 +5,6 @@ const Rendered = {
     const entities = new Entities();
     return entities.decode(data);
   }
-}
+};
 
 module.exports = Rendered;

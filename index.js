@@ -1,3 +1,3 @@
-var www = require('./bin/www');
+const www = require('./bin/www');
 
 module.exports = www;

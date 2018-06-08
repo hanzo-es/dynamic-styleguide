@@ -1,41 +1,29 @@
 #!/usr/bin/env node
+/**
+ * Parse arguments and store them before everything
+ */
+const argv = require('yargs').argv;
+const parsedArgs = require('../src/lib/parsed-args');
+const { allowedArgs } = require('../src/helpers/constants');
+Object.values(allowedArgs).forEach( aa => {
+  if (!!argv[aa]) {
+    parsedArgs.add(aa, argv[aa]);
+  }
+});
 
 /**
  * Module dependencies.
  */
-var app = require('../app');
-var debug = require('debug')('hz-dynamic-stylesheets:server');
-var http = require('http');
-var config = require('../src/lib/config-loader')
-
-/**
- * Get port from environment and store in Express.
- */
-var port = normalizePort(config.deployPort || '3000');
-app.set('port', port);
-
-/**
- * Create HTTP server.
- */
-
-var server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-server.listen(port, function() {
-  console.log('App running on http://localhost:'+port);
-})
-server.on('error', onError);
-server.on('listening', onListening);
+const app = require('../app');
+const debug = require('debug')('hz-dynamic-stylesheets:server');
+const http = require('http');
+const config = require('../src/lib/config-loader');
 
 /**
  * Normalize a port into a number, string, or false.
  */
-
 function normalizePort(val) {
-  var port = parseInt(val, 10);
+  const port = parseInt(val, 10);
 
   if (isNaN(port)) {
     // named pipe
@@ -51,25 +39,42 @@ function normalizePort(val) {
 }
 
 /**
+ * Get port from environment and store in Express.
+ */
+let port;
+if (!!parsedArgs.get(allowedArgs.deployPages)) {
+  port = normalizePort(config.pages.pagesDeployPort || '3001');
+} else {
+  port = normalizePort(config.deployPort || '3000');
+}
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+const server = http.createServer(app);
+
+/**
  * Event listener for HTTP server "error" event.
  */
-
 function onError(error) {
   if (error.syscall !== 'listen') {
     throw error;
   }
 
-  var bind = typeof port === 'string'
+  const bind = typeof port === 'string'
     ? 'Pipe ' + port
     : 'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
+      // eslint-disable-next-line
       console.error(bind + ' requires elevated privileges');
       process.exit(1);
       break;
     case 'EADDRINUSE':
+      // eslint-disable-next-line
       console.error(bind + ' is already in use');
       process.exit(1);
       break;
@@ -81,14 +86,21 @@ function onError(error) {
 /**
  * Event listener for HTTP server "listening" event.
  */
-
 function onListening() {
-  var addr = server.address();
-  var bind = typeof addr === 'string'
+  const addr = server.address();
+  const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
-  if (process.send) {
-    process.send('online');
-  }
 }
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+server.listen(port, function() {
+  // eslint-disable-next-line
+  console.log('App running on http://localhost:' + port);
+});
+server.on('error', onError);
+server.on('listening', onListening);
+

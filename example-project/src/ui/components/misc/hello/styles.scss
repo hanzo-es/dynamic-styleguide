@@ -1,0 +1,55 @@
+@import 'ui/index';
+@import 'vars';
+
+/// This is the hello component
+/// @group c-hello
+///
+/// @variants disjunction - General variants
+/// c-hello--underline: underlined
+/// c-hello--italic: italic
+///
+/// @variants exclusive - color
+/// c-hello--green: Change the color to green
+/// c-hello--transparent: Change the color to transparent
+///
+/// @variants exclusive - padding
+/// c-hello--medium: Change the padding to medium
+/// c-hello--big: Change the padding to big
+
+.c-hello {
+  display: inline-block;
+  width: 100%;
+  min-height: $spacing-xs * 4;
+  padding: $spacing-xs;
+
+  background-color: $hello-orange;
+  border: 1px solid $hello-orange;
+  border-radius: 5px;
+
+  // Variants
+  &--underline {
+    text-decoration: underline;
+  }
+
+  &--italic {
+    font-style: italic;
+  }
+
+  &--green {
+    background-color: $hello-green;
+    border-color: $hello-green;
+  }
+
+  &--transparent {
+    background-color: transparent;
+    border-color: black;
+  }
+
+  &--medium {
+    padding: $spacing-xs * 2;
+  }
+
+  &--big {
+    padding: $spacing-xs * 4;
+  }
+}

@@ -1,0 +1,22 @@
+/// Adds color to a link element
+/// @param {Map} the color map defining 4 states
+/// It can optionally setup different colors for all states
+@mixin colorizeLink(
+  $color, 
+  $visited: color($color, 'faint'), 
+  $hover: color($color, 'fade'), 
+  $active: color($color, 'light')
+) {
+  color: color($color);
+
+  &:visited {
+    color: $visited;
+  }
+
+  &:hover {
+    color: $hover;
+  }
+  &:active {
+    color: $active;
+  }
+}

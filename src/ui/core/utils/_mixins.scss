@@ -1,0 +1,77 @@
+////
+/// @group utils
+////
+
+/// Adds hover modifier only to not touch environments 
+@mixin hover() {
+  @include whenNoTouch {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+/// optional styling applied only to print environments
+@mixin whenPrinted {
+  @media print { @content; }
+}
+
+/// optional styling applied only to screen environments
+@mixin whenScreen {
+  @media screen { @content; }
+}
+
+/// optional styling applied only to not touch environments, no touch events it's added from modernizr
+@mixin whenNoTouch {
+  html.no-touchevents & { @content; }
+}
+
+/// Applies circular shapping to an element
+/// @param {String} the circle's diameter
+@mixin circle($size) {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+}
+
+
+/// Defines a slot
+/// @param {String} the slot class name
+@mixin slot($slotname) {
+  > #{$slotname}.slot {
+    @content;
+  }
+}
+
+/// Creates a triangle shape
+/// @param $color {String} the triangle color
+/// @param $size {String} the triangle height
+/// @param $direction {String} the triangle direction
+@mixin triangle($color:#000, $width: '5px', $height:'5px', $direction:'up') {
+  width: 0;
+  height: 0;
+  border-width: 0;
+  border-color: transparent;
+  @if ($direction=='up') {
+    border-right: $width solid transparent;
+    border-left: $width solid transparent;
+    border-bottom: $height solid $color;
+  }
+  @if ($direction=='down') {
+    border-right: $width solid transparent;
+    border-left: $width solid transparent;
+    border-top: $height solid $color;
+  }
+  @if ($direction=='right') {
+    border-top: $height solid transparent;
+    border-bottom: $height solid transparent;
+    border-left: $width solid $color;
+  }
+  @if ($direction=='left') {
+    border-top: $height solid transparent;
+    border-bottom: $height solid transparent;
+    border-right: $width solid $color;
+  }
+}
+
+

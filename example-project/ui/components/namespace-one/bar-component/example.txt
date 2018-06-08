@@ -1,4 +1,0 @@
-<div>
-  <h3>This is a bar-component</h3>
-  <span id="dynamic-content-span"></span>
-</div>

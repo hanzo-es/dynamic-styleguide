@@ -1,0 +1,10 @@
+////
+/// @group spacing
+////
+
+/// Helper function to made basic space calculations
+/// @param $number, {Number} the dimension of grid.
+/// @return the position in pixels
+@function spacing($number) {
+  @return $spacing-unit * $number;
+}

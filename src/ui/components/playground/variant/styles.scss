@@ -1,0 +1,66 @@
+
+@import 'ui/index';
+.c-variant {
+  .variant-group {
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    flex-direction: row;
+  }
+
+  .variant-item {
+    @include useType(markdown-text);
+    flex: 1 0 50%;
+    height: spacing(7);
+    line-height: spacing(7);
+    padding-left: spacing(8);
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+
+    input {
+      position: absolute;
+      opacity: 0;
+      display: none;
+
+      &:checked~.checkmark {
+
+        &:after {
+          display: block;
+        }
+      }
+    }
+
+    input[type=radio] + .checkmark {
+      border-radius: 50%;
+      &:after {
+        border-radius: 50%;
+      }
+    }
+
+    &:hover input~.checkmark {}
+  }
+
+
+  .checkmark {
+    position: absolute;
+    top: 6px;
+    left: 0;
+    height: #{spacing(4) + 2px};
+    width: #{spacing(4) + 2px};
+    background-color: transparent;
+    
+    border: 1px solid #c5c5c5;
+
+    &:after {
+      content: "";
+      position: absolute;
+      display: none;
+      top: 5px;
+      left: 5px;
+      width: 6px;
+      height: 6px;
+      background: color($wild-watermelon);
+    }
+  }
+}

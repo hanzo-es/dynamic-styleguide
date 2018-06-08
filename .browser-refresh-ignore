@@ -1,0 +1,13 @@
+Thumbs.db
+.*
+*.log
+*.md
+./src/ui/
+public/
+node_modules/
+dist/
+.git/
+
+LICENSE
+package*
+yarn*

@@ -1,0 +1,19 @@
+////
+/// @group breakpoints
+////
+
+$screen-sm-min: 544px !default;
+$screen-md-min: 768px !default;
+$screen-lg-min: 992px !default;
+$screen-xl-min: 1200px !default;
+
+//
+$screen-xs-max: $screen-sm-min - 1;
+$screen-sm-max: $screen-md-min - 1;
+$screen-md-max: $screen-lg-min - 1;
+$screen-lg-max: $screen-xl-min - 1;
+
+//
+$screen-hide-sidebar-under: md;
+$screen-change-layout-under: lg;
+$screen-change-layout-above: md;
