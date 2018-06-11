@@ -1,6 +1,6 @@
 {
   "name": "dynamic-styleguide",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Tool to dynamically generate styleguides from UI library. Used either internaly while working on components/modules or to share documentation with clients.",
   "engines": {
     "node": ">=8.9.0"
@@ -9,9 +9,11 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "postinstall": "yarn build",
     "start": "node index.js",
     "dev": "yarn dev:ui & yarn dev:server",
     "dev:ui": "webpack --watch --mode development --config ./build/webpack.config.js",
+    "build": "webpack --mode production --config ./build/webpack.config.js",
     "dev:server": "NODE_ENV=development browser-refresh index.js",
     "test:unit": "NODE_ENV=test mocha --timeout 5000 './test/**/*-test.js'",
     "test:lint": "eslint src/**/*.js",
