@@ -7,7 +7,10 @@ const encodedLoader = require('../lib/block-loader/encoded.loader');
 const readmeLoader = require('../lib/block-loader/readme.loader');
 const styleCommentLoader = require('../lib/block-loader/style-comment.loader');
 const folderStructure = require('../lib/folder-structure');
-const { ui: uiProjectFolder} = require('../lib/project-folders');
+const {
+  ui: uiProjectFolder
+} = require('../lib/project-folders');
+const { getIndexTree } = require('../lib/sidebar-tree');
 const {
   README_FILE_NAME,
   EXAMPLE_FILE_NAME
@@ -28,14 +31,18 @@ const elementModel = {
     const {firstLevel, namespace, element} = this.params;
     const basePath = pathJoiner([firstLevel, namespace, element]);
     const selected = element || namespace || firstLevel || null;
+
+    // Get the first level folders.
+    const elements = getIndexTree();
+
+
+    // Handle Styleguide folders
     const example = blockLoaderStrategy.setLoader(rawLoader).loadBlock(`${basePath}/${EXAMPLE_FILE_NAME}`);
     const encodedHTML = blockLoaderStrategy.setLoader(encodedLoader).loadBlock(example);
     const readme = blockLoaderStrategy.setLoader(readmeLoader).loadBlock({ path: `${basePath}/${README_FILE_NAME}`});
     const styleComment = blockLoaderStrategy.setLoader(styleCommentLoader).loadBlock(`${basePath}/styles.scss`);
 
-    // Get the first level folders. For the current one, get its children
-    const elements = folderStructure(uiProjectFolder, {deepLevel: 1});
-
+    // For the selected element, get its children
     elements.children = elements.children.map( (child) => {
       if (child.name === firstLevel) {
         return {

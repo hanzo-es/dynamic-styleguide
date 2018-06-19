@@ -17,5 +17,4 @@ router.get('/:firstLevel', loadElementDetails);
 router.get('/:firstLevel/:element', loadElementDetails);
 router.get('/:firstLevel/:namespace/:element', loadElementDetails);
 
-
 module.exports = router;

@@ -6,12 +6,10 @@
     "css" : [],
     "js" : []
   },
-
+  "elementsUrlDirectory": "view",
   "pages": {
     "pagesFolder": "pages",
-    "distPagesFolder": "demo-dist/pages",
-    "pagesDeployPort": 3001,
-    "elementsUrlDirectory": "view"
+    "pagesUrlNamespace": "pages"
   },
 
   "contents": {

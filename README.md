@@ -1,7 +1,7 @@
 # dynamic-styleguide
 
 This projects is used to define and use a set of components and web elements as style guide, serving them with an use explanation, they implementation alternatives and a live editor.
-Also provides an alternative use to serve static pages.
+Also provides a use to serve static pages.
 
 ## Prerequisites
 
@@ -43,12 +43,10 @@ In the same file, but in the scripts node, add `"styleguide": "dynamic-styleguid
       "assets/app.js"
     ]
   },
-
+  "elementsUrlDirectory": "view",
   "pages": {
     "pagesFolder": "pages",
-    "distPagesFolder": "demo-dist/pages",
-    "pagesDeployPort": 3001,
-    "elementsUrlDirectory": "view"
+    "pagesUrlNamespace": "pages"
   },
 
   "contents": {
@@ -61,28 +59,29 @@ In the same file, but in the scripts node, add `"styleguide": "dynamic-styleguid
   }
 }
 
-
 ```
  - `parent` references another config file from which the current one will 'extends'.
  - `uiFolder` defines the folder where the components to display are placed. 
- - `pagesFolder` defines the folder where the pages to read their comments from are.
  - `distFolder`, where your compiled/transposed files need to be rendered from.
- - `bundled` defines the routes to the specific files that will be loaded.
- - `distPagesFolder` is where the pages to be rendered are. They must have the same name and structure that the defined inside `pagesFolder`.
  - `deployPort` defines which port will be used, by default it is `3000`.
- - `pagesDeployPort` defines which port will be used to serve the static pages, by default it is `3001`.
- - `logo` defines the logo content and where links to.
- - `pageTitle` is the string to be shown as title in the browser.
- - `sideMenuLinks` This array will render links in the side menu instead of the top one. By default it is empty. The objects inside the array must have defined two nodes: `href` (string) and `content (string or HTML).
+ - `bundled` defines the routes to the specific files that will be loaded.
  - `elementsUrlDirectory` is the the first part of the URL path under which the elements pages will be rendered. The default value is `view` and can not be empty.
+
+ **pages**
+- `pagesFolder` defines the folder where the pages to read their comments are.
+- `pagesUrlNamespace` is the the first part of the URL path under which the pages pages will be rendered. The default value is `pages` and can not be empty.
+
+ **contents**
+ - `pageTitle` is the string to be shown as title in the browser.
+ - `logo` defines the logo content and where links to.
+ - `sideMenuLinks` This array will render links in the side menu instead of the top one. By default it is empty. The objects inside the array must have defined two nodes: `href` (string) and `content (string or HTML).
+
 
 ### Expected UI folder structure
 
 UI library architecture and background information will be part of another repository.
 
-
 ```
-
 ui
 ├── components
 |   └── nav #namespace folder --> can be ignored in the navigation
@@ -99,11 +98,14 @@ ui
     └── header
         ├── example.txt
         └── readme.md
+
 ```
 
 `example.txt` and `styles.scss` files are optional and should include valid content.
 
 In the `ui` folder and in every first lever folder (namespace) can be defined a `readme.md`.
+
+`components`, `core` and `modules` are part or the web elements that can be use in the app and are shown in this style guide. 
 
 ### Elements style alternatives
 
@@ -149,6 +151,28 @@ To define where to apply this classes, in own `example.txt` we have to add `{{va
 </div>
 ```
 
+### Expected pages folder structure
+
+The pages that will be rendered are inside the  `distFolder` folder, and should have the same folders and file name structure as `pagesFolder`. The latter folder's files are expected to have defined some metadata as comments, e.g:
+```
+---
+  "title": "Main page",
+  "template": "default"
+---
+```
+This comments will be sued to generate the cover page to chose what page/file to display.
+`index.html` filename must not be used, as this will be the cover page file name.
+Example of expected file structure for `distPagesFolder`:
+
+// TODO: folders are not supported in a first stage.
+```
+pages
+├── main.html
+├── some-category
+|   └── other.html
+├── ...
+```
+
 ### Arguments
 
 By default, the app try to load the `styleguide.config.json` file, but a custom file name could be passed as argument:
@@ -160,7 +184,6 @@ The custom config file must the placed in the root folder of the project
 
 This the list of the allowed arguments
 - configFile
-- pages (take a look at [Use as a pages server in your project](#use-as-a-pages-server-in-your-project))
 
 ### Running it
 
@@ -171,9 +194,6 @@ $ yarn styleguide
 
 The app will be deployed by default to [`http://localhost:3000`](http://localhost:3000)
 
-## Use as a pages server in your project
-
-Reads the comments inside the pages (from `pagesFolder` folder) before they are compiled and display a cover page to select a compiled one (from `distPagesFolder`)
 
 ### Add it as a development dependency
 
@@ -187,55 +207,6 @@ If you did not before, add this project as a npm development dependency in your 
 Or using yarn
 ```bash
 $ yarn add -D dynamic-styleguide
-```
-
-In the same file, but in the scripts node, add `"styleguide": "dynamic-styleguide  --pages"`:
-```json
-  "scripts": {
-    "pages": "dynamic-styleguide --pages"
-  },
-  ```
-The argument `--pages` is what make it works as a pages server instead of the dynamic style guide.
-
-### Pages configuration 
- Take a look at the [Dynamic style guide configuration](#configuration). The entries that mather here are the `pagesFolder`, `pagesDeployPort` and `distPagesFolder`.
-
-### Expected pages folder structure
-
-Both, `distFolder` and `distPagesFolder` should have the same folders and file name structure. The former folder's file are expected to have defines some metadata as comments, e.g:
-```
----
-  "title": "Main page",
-  "template": "default"
----
-```
-This comments will be used to generate the cover page to chose what page/file to display.
-`index.html` filename must not be used, as this will be the cover page file name.
-Example of expected file structure for `distPagesFolder`:
-```
-pages
-├── main.html
-├── some-category
-|   └── other.html
-├── ...
-```
-
-### Running it
-
-```bash
-$ yarn pages
-```
- **NOTE:** 
-If we have defined inside our `package.json` file this: 
-```json
-  "scripts": {
-    "styleguide": "dynamic-styleguide"
-  },
-  ```
-Pages server also can be started running
-
-```bash
-$ yarn styleguide --pages
 ```
 
 ## Develop installation
@@ -262,10 +233,6 @@ If you want to modify this project, you should run it in development mode:
  To launch the project to work on it just launch the start script
  ```
  $ yarn dev
- ```
- or
- ```
- $ yarn dev --pages
  ```
  
  The `example-project` folder will be used to load the different example elements.

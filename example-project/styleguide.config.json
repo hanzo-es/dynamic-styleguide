@@ -1,12 +1,6 @@
 {
   "uiFolder": "src/ui",
-  "distFolder": "dist",
-
-  "pages": {
-    "pagesFolder": "pages",
-    "distPagesFolder": "dist/pages"
-  },
-
+  "distFolder": "fake-dist",
   "bundled": {
     "css" : [
       "assets/styles.css"
@@ -15,12 +9,14 @@
       "assets/app.js"
     ]
   },
-
+  "pages": {
+    "pagesFolder": "src/pages"
+  },
   "contents": {
     "pageTitle": "Hanzo Style Guide",
     "logo": {
       "alt": "back to home",
-      "content": "<img src=\"/dist/assets/images/project-logo.png\" width=\"140px\" height=\"42px\">",
+      "content": "<img src=\"/fake-dist/assets/images/hanzo-logo.png\" width=\"140px\" height=\"42px\">",
       "href": "/"
     }
   }

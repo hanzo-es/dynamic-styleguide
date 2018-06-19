@@ -1,4 +1,5 @@
 const path = require('path');
+const deepAssign = require('deep-assign');
 const rootPath = require('./root-path');
 const { loadIfExistOrNull } = require('./file-reader');
 const parsedArgs = require('./parsed-args');
@@ -32,4 +33,4 @@ const userConfigFilePath = isDevOrTesting ? path.join(rootPath, EXAMPLE_PROJECT_
 const defaultConfig = require(path.join(__dirname, '../../default.config.json'));
 const userConfig = loadConfigFile(userConfigFilePath, configFileName);
 
-module.exports = {...defaultConfig, ...userConfig};
+module.exports = deepAssign(defaultConfig, userConfig);

@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
-const { folders, allowedArgs } = require('./src/helpers/constants');
-const parsedArgs = require('./src/lib/parsed-args');
+const { folders } = require('./src/helpers/constants');
 
 // INIT APP
 const app = express();
@@ -18,14 +17,7 @@ viewEngine(app, folders.views);
 app.use(express.static(folders.public));
 
 // Routing
-// Here we can serve and handle the styleguide (UI folder) or the example pages
-// (pages folder). Styleguide is used by default
-
-if (!!parsedArgs.get(allowedArgs.deployPages)) {
-  app.use(require(path.join(folders.routes, 'pages')));
-} else {
-  app.use(require(path.join(folders.routes, 'styleguide')));
-}
+app.use(require(folders.routes));
 
 // Handle 404
 app.use(function(req, res) {

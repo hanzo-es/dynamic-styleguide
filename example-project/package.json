@@ -4,8 +4,7 @@
   "description": "Example project to use dynamic style guide",
   "main": "index.js",
   "scripts": {
-    "styleguide": "dynamic-styleguide",
-    "pages": "dynamic-styleguide --pages"
+    "styleguide": "dynamic-styleguide"
   },
   "author": "Hanzo SL",
   "private": true,

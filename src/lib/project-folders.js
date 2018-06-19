@@ -4,8 +4,7 @@ const {
   uiFolder,
   distFolder,
   pages: {
-    pagesFolder,
-    distPagesFolder
+    pagesFolder
   }
 } = require('../lib/config-loader');
 
@@ -24,4 +23,3 @@ const getPathFolder = (folder) => {
 module.exports.ui = getPathFolder(uiFolder);
 module.exports.assets = getPathFolder(distFolder);
 module.exports.pages = getPathFolder(pagesFolder);
-module.exports.distPages = getPathFolder(distPagesFolder);

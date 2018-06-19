@@ -12,10 +12,7 @@ $ yarn
 ```bash
 $ yarn styleguide
 ```
- or
-```bash
-$ yarn pages
-```
+
 ## Config
 
 The `styleguide.config.json` should be in the project's root folder

@@ -28,6 +28,5 @@ exports.DS_IGNORED_FOLDERS = ['assets'];
 exports.DEFAULT_ELEMENTS_URL_DIRECTORY = 'view';
 exports.DEFAULT_PAGES_URL_DIRECTORY = 'pages';
 exports.allowedArgs = {
-  customConfigFile: 'configFile',
-  deployPages: 'pages'
+  customConfigFile: 'configFile'
 };

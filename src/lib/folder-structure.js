@@ -17,40 +17,43 @@ const defaultOptions = {
  * @return {Object}
  */
 const folderStructure = (dir, options = {}) => {
-  const { urlSegment, deepLevel, selected, level } = {...defaultOptions, ...options};
-  const isDirectory = fs.statSync(dir).isDirectory();
+  if (fs.existsSync(dir)) {
+    const { urlSegment, deepLevel, selected, level } = {...defaultOptions, ...options};
+    const isDirectory = fs.statSync(dir).isDirectory();
 
-  // Don't add uiProjectFolder to base url for components
-  const name = (path.basename(dir) !== path.basename(uiProjectFolder) ) ? path.basename(dir) : '';
-  const url = path.join(urlSegment, name);
-  const node = {
-    name,
-    url,
-    type: isDirectory ? 'directory' : 'file',
-    isSelected: selected === name,
-    level
-  };
+    // Don't add uiProjectFolder to base url for components
+    const name = (path.basename(dir) !== path.basename(uiProjectFolder) ) ? path.basename(dir) : '';
+    const url = path.join(urlSegment, name);
+    const node = {
+      name,
+      url,
+      type: isDirectory ? 'directory' : 'file',
+      isSelected: selected === name,
+      level
+    };
 
-  if (isDirectory && deepLevel > 0) {
-    node.children = fs.readdirSync(dir).map((file) => {
-      const newOptions = {
-        urlSegment: url,
-        deepLevel: deepLevel - 1,
-        selected,
-        level: level + 1
-      };
-      return folderStructure(`${dir}/${file}`, newOptions );
-    });
-    node.isClickable = !DS_IGNORED_FOLDERS.includes(node.name);
-    node.hasClickableChildren = node.children.some(
-      child => child.isClickable || child.hasClickableChildren
-    );
-    node.isOpen =
-      node.hasClickableChildren &&
-      (node.isSelected ||
-      node.children.some(child => child.isSelected || child.isOpen));
+    if (isDirectory && deepLevel > 0) {
+      node.children = fs.readdirSync(dir).map((file) => {
+        const newOptions = {
+          urlSegment: url,
+          deepLevel: deepLevel - 1,
+          selected,
+          level: level + 1
+        };
+        return folderStructure(`${dir}/${file}`, newOptions );
+      });
+      node.isClickable = !DS_IGNORED_FOLDERS.includes(node.name);
+      node.hasClickableChildren = node.children.some(
+        child => child.isClickable || child.hasClickableChildren
+      );
+      node.isOpen =
+        node.hasClickableChildren &&
+        (node.isSelected ||
+        node.children.some(child => child.isSelected || child.isOpen));
+    }
+    return node;
   }
-  return node;
+  return null;
 };
 
 module.exports = folderStructure;

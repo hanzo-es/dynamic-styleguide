@@ -7,9 +7,7 @@ const {
     logo,
     sideMenuLinks,
   },
-  pages: {
-    elementsUrlDirectory
-  }
+  elementsUrlDirectory
 } = require('../lib/config-loader');
 
 const { DEFAULT_ELEMENTS_URL_DIRECTORY } = require('../helpers/constants');
