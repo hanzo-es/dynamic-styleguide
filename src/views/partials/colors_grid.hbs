@@ -1,0 +1,52 @@
+<style>
+  .color-wrapper{
+    display: flex;
+    flex-direction: column;
+  }
+  .color-row{
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .color-cell{
+    width:200px;
+    margin-top: 10px;
+    text-align: center;
+  }
+  .color-circle{
+    height:100px;
+    width:100px;
+    border: solid black 2px;
+    border-radius: 5px;
+    display: inline-block;
+  }
+</style>
+<div class="color-wrapper">
+  <div class="color-row">
+    <div class="color-cell header-cell">
+      Colors \ Variants
+    </div>
+    {{#each allowedVariants as |allowedVariant index|}}
+      <div class="color-cell header-cell">
+        <b>{{allowedVariant}}</b>
+      </div>
+    {{/each}}
+  </div>
+  
+  {{#each (forIn colors) as |color| }}
+    <div class="color-row">
+      <div class="color-cell">
+        {{!-- color name --}}
+        <b>{{itemAt color 0}}</b><br>
+      </div>
+      {{#each ../allowedVariants as |allowedVariant index|}}
+
+        <div class="color-cell">
+          {{#if (get (itemAt color 1) allowedVariant)}}
+            <div class='color-circle' style=" background-color: #{{get (itemAt color 1) allowedVariant}}"></div>
+            #{{get (itemAt color 1) allowedVariant}}
+          {{/if}}
+        </div>
+      {{/each}}
+    </div>
+  {{/each}}
+</div>

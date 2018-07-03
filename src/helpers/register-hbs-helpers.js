@@ -47,5 +47,33 @@ module.exports = (hbs) => {
         }
       }
     },
+    join: (array, char) => {
+      if (Array.isArray(array)) {
+        return array.join(char);
+      }
+    },
+
+    // Objects
+    forIn: (obj) => {
+      const result = [];
+      if (!!obj) {
+        for (const key in obj) {
+          if (obj.hasOwnProperty(key)) {
+            result.push( [key, obj[key] ]);
+          }
+        }
+      }
+      return result;
+    },
+    get: (obj, key) => {
+      if (!!obj) {
+        return obj[key];
+      }
+      return obj;
+    },
+    joinObjArr: (array, prop, val, char) => {
+      return array.map((obj) => `${obj[prop]}${char}${obj[val]}`);
+    }
+
   });
 };

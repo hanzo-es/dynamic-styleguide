@@ -16,7 +16,7 @@
 
     @include slot('.sidebar') {
       width: $layout-sidebar-width;
-      padding: $layout-sidebar-padding;
+      padding: $layout-sidebar-padding $layout-sidebar-padding $layout-sidebar-padding 0;
       z-index: z-below('header');
       border-right: 1px solid color($whisper);
     }

@@ -6,12 +6,23 @@
   flex-direction: column;
   height: 100%;
 
+  > .header,
+  > .content, 
+  > .footer {
+    padding-left: $sidebar-spacing;
+  }
+
+  > .header {
+    padding-bottom: $sidebar-separation;    
+  }
+
   > .content {
-    padding-top: spacing(16);
+    overflow-y: auto;
   }
 
   > .footer {
     position: relative;
+    padding-top: $sidebar-separation;
 
     .project-version {
       @include useType(small);

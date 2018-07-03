@@ -1,0 +1,39 @@
+////
+/// @group colors
+////
+
+/// gets a color from _vars.scss defined set
+/// @param $colorSet {String} color name
+/// @param $variation {String} (base) set variation
+@function color($colorSet, $variation: base) {
+  @if type-of($colorSet) == color {
+    @return $colorSet;
+  }
+
+  @if map-has-key($colorSet, $variation) {
+    @return map-get($colorSet, $variation);
+  }
+
+  @warn "Unknown #{$variation} variation in #{$colorSet}.";
+  @return map-get($colorSet, base);
+}
+
+/// gets a color variation from _vars.scss defined set by index
+/// @param $colorSet {String} color name
+/// @param $by {Number} offset color
+$color-grades: dark, base, soft, light;
+@function offsetVariation($variation, $by) {
+  $index: index($color-grades, $variation);
+  $index_by: $index + $by;
+
+  @if ($index_by > length($color-grades)) {
+    @return nth($color-grades, length($color-grades) - 1);
+  }
+
+  @if ($index_by < 0) {
+    @return nth($color-grades, 0);
+  }
+
+  @return nth($color-grades, $index_by);
+}
+

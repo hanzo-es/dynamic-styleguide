@@ -1,16 +1,14 @@
 const path = require('path');
 
 const blockLoaderStrategy = require('../lib/block-loader');
-
 const rawLoader = require('../lib/block-loader/raw.loader');
 const encodedLoader = require('../lib/block-loader/encoded.loader');
 const readmeLoader = require('../lib/block-loader/readme.loader');
 const styleCommentLoader = require('../lib/block-loader/style-comment.loader');
 const folderStructure = require('../lib/folder-structure');
-const {
-  ui: uiProjectFolder
-} = require('../lib/project-folders');
+const { ui: uiProjectFolder } = require('../lib/project-folders');
 const { getIndexTree } = require('../lib/sidebar-tree');
+const { getDefinedExtraHandler } = require('../lib/extra-handlers');
 const {
   README_FILE_NAME,
   EXAMPLE_FILE_NAME
@@ -35,6 +33,23 @@ const elementModel = {
     // Get the first level folders.
     const elements = getIndexTree();
 
+    // Check if there are special handlers defined for the current element path
+    const handlers = getDefinedExtraHandler(path.join(...[firstLevel, namespace, element].filter(s=>s)));
+
+    // Object keys used in `handlerData`
+    // color-grid : colors, allowedVariants
+    let handlerData = {};
+    if (handlers.length) {
+      handlerData = handlers.reduce((acc, handler) => {
+        const loader = require(`../lib/block-loader/${handler.loaderName}`);
+        const hd = blockLoaderStrategy.setLoader(loader).loadBlock({
+          basePath,
+          ...handler.config,
+          uiProjectFolder
+        });
+        return {...acc, ...hd};
+      }, handlerData);
+    }
 
     // Handle Styleguide folders
     const example = blockLoaderStrategy.setLoader(rawLoader).loadBlock(`${basePath}/${EXAMPLE_FILE_NAME}`);
@@ -58,7 +73,8 @@ const elementModel = {
       elements,
       selected,
       readme,
-      example: encodedHTML
+      example: encodedHTML,
+      handlerData
     };
 
     styleComment.then(([parsedContent]) => {

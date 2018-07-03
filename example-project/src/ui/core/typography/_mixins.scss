@@ -2,23 +2,32 @@
 /// @group typography
 ////
 
-///
-@mixin font-face($family, $fileName, $weight, $style) {
+/// Adds a fontFace to a component
+/// @param $family, the font to be added from the set defined on _vars.scss
+/// @param $filename the filename to load
+/// @param $weight the font weight
+/// @param $style the font variant
+@mixin fontFace($family, $fileName, $weight, $style) {
   @font-face {
     font-family: $family;
     font-weight: $weight;
     font-style: $style;
 
-    src: url('#{$fileName}.woff') format('woff');
+    src: url('#{$fileName}.woff2') format('woff2'),
+         url('#{$fileName}.woff') format('woff'),
+         url('#{$fileName}.ttf') format('truetype');
   }
 }
 
-///
+/// Imports a font from googlefonts
+/// @param $family the font to be loaded
 @mixin googleFont($family) {
   @import url('//fonts.googleapis.com/css?family=#{$family}');
 }
 
-///
+/// Expands the mapped props from a typeset and a breakpoint
+/// @param $typeset a valid typeset from the _vars.scss definitions
+/// @param $size the size from the $typeset to be expanded
 @mixin expandSize($typeset, $size) {
   $props: map-get(map-get($font-typeset, $typeset), $size);
   @each $prop, $value in $props {
@@ -26,7 +35,7 @@
   }
 }
 
-///
+/// Creates sass extends from available typesets
 @mixin initTypesets {
   @each $typeset, $font in $font-typeset {
     %typeset-#{$typeset} {
@@ -35,7 +44,8 @@
   }
 }
 
-///
+/// Adds the font for the breakpoint
+/// @param $typeset the typeset to be expanded
 @mixin useType($typeset) {
   @include expandSize($typeset, 'xs');
 
@@ -50,20 +60,5 @@
   }
   @include screenMoreThan('lg') {
     @include expandSize($typeset, 'xl');
-  }
-}
-
-///
-@mixin useFontPairing($fontPairing) {
-  @if map-has-key($map: $font-pairings, $key: $fontPairing) {
-    .primary {
-      @include useType(map-get(map-get($font-pairings, $fontPairing), primary));
-    }
-
-    .secondary {
-      @include useType(map-get(map-get($font-pairings, $fontPairing), secondary));
-    }
-  } @else {
-    @warn 'Font Pairing #{$fontPairing} not found';
   }
 }

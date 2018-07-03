@@ -1,0 +1,35 @@
+@import 'styles.scss';
+
+@function fontStylesJsonGenerator($ts) {
+  $typography-json: '[';
+  @each $typeKey, $sizeSet in $ts {
+    $size-json: '';
+
+    @each $size, $styles in $sizeSet {
+
+      $styles-json: '';
+
+      @each $prop, $value in $styles {
+
+        @if str-length($styles-json) > 0 {
+          $styles-json: $styles-json + ',';
+        }
+
+        $styles-json: $styles-json + ' { "prop": "#{$prop}", "value": "#{$value}" }';
+      }
+
+      @if str-length($size-json) > 0 {
+        $size-json: $size-json + ',';
+      }
+
+      $size-json: $size-json + ' { "size": "#{$size}", "styles": [#{$styles-json}] }';
+    }
+
+    @if str-length($typography-json) > 1 {
+      $typography-json: $typography-json + ',';
+    }
+    $typography-json: $typography-json + ' {"typo": "#{$typeKey}", "sizes": [#{$size-json}] } ';
+  }
+  $typography-json: $typography-json + ']';
+  @return $typography-json
+}

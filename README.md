@@ -9,8 +9,7 @@ Also provides a use to serve static pages.
 * install node (>=8.9.0)
 * install yarn
 
-## Use the dynamic style guide in your project
-### Add it as a development dependency
+## Add it as a development dependency
 
 First, add this project as a npm development dependency in your `package.json` file:
 
@@ -26,7 +25,7 @@ In the same file, but in the scripts node, add `"styleguide": "dynamic-styleguid
     "styleguide": "dynamic-styleguide"
   },
   ```
-### Configuration 
+## Configuration 
 
  To use this tool under your own project, you should create a `styleguide.config.json` file in your project root folder. This file should look like this: 
  ```json
@@ -56,7 +55,20 @@ In the same file, but in the scripts node, add `"styleguide": "dynamic-styleguid
       "href": "/"
     },
     "sideMenuLinks": []
-  }
+  },
+
+  "extraHandlers": [
+    {
+      "folder": "core/colors",
+      "loaderName": "color-grid.loader",
+      "config": {
+        "variationsFileName": "_functions.scss",
+        "variationsVarName": "color-grades",
+        "colorsFileName": "_vars.scss"
+      }
+    }
+  ]
+
 }
 
 ```
@@ -76,8 +88,13 @@ In the same file, but in the scripts node, add `"styleguide": "dynamic-styleguid
  - `logo` defines the logo content and where links to.
  - `sideMenuLinks` This array will render links in the side menu instead of the top one. By default it is empty. The objects inside the array must have defined two nodes: `href` (string) and `content (string or HTML).
 
+**extraHandlers**
+`extraHandlers` is an array with objects that must have the following structure:
+ - `folder` defines witch folder will be handled
+ - `loaderName` is the loader file name that will be use
+ - `config` is the extra data that will be passed to the loader
 
-### Expected UI folder structure
+## Expected UI folder structure
 
 UI library architecture and background information will be part of another repository.
 
@@ -107,7 +124,7 @@ In the `ui` folder and in every first lever folder (namespace) can be defined a 
 
 `components`, `core` and `modules` are part or the web elements that can be use in the app and are shown in this style guide. 
 
-### Elements style alternatives
+## Elements style alternatives
 
 In the elements folders can exist a `style.scss` file with some styles to be applied to that element. The host project is the responsible for compile it. This project will just read it from the build destination folder (See the [Configuration](#configuration) section).
 
@@ -151,7 +168,7 @@ To define where to apply this classes, in own `example.txt` we have to add `{{va
 </div>
 ```
 
-### Expected pages folder structure
+## Expected pages folder structure
 
 The pages that will be rendered are inside the  `distFolder` folder, and should have the same folders and file name structure as `pagesFolder`. The latter folder's files are expected to have defined some metadata as comments, e.g:
 ```
@@ -173,7 +190,7 @@ pages
 ├── ...
 ```
 
-### Arguments
+## Arguments
 
 By default, the app try to load the `styleguide.config.json` file, but a custom file name could be passed as argument:
 
@@ -185,7 +202,77 @@ The custom config file must the placed in the root folder of the project
 This the list of the allowed arguments
 - configFile
 
-### Running it
+## Extra handlers
+
+As some elements need to render extra information, extra handlers can be defined in the *config file*,as an object in `extraHandlers` array. Every one of these objects must have defined a `folder`, and every element path that match that folder, will be handled with the defined loader (`loaderName`).
+`folder` is the relative path of the element starting from the *ui folder*.
+
+The data that the loader(s) return will be passed to the element template.
+
+### Available handlers
+
+#### Color Grid
+
+Used to render a grid with the different variables colors. These are obtained parsing some SCSS files. This is the config that must be defined in the handler:
+```
+  {
+    "folder": "core/colors",
+    "loaderName": "color-grid.loader",
+    "config": {
+      "variationsFileName": "_functions.scss",
+      "variationsVarName": "color-grades",
+      "colorsFileName": "_vars.scss"
+    }
+  },
+```
+- `variationsFileName` is the file in which is defined `variationsVarName` that have assigned the allowed colors grades. That variable must be in the root of the file.
+E.g.:
+```
+$color-grades: dark, base, soft, light;
+```
+
+- `colorsFileName` is the file in which are defined all the colors and their variations that will me rendered in the element page. Every variable will be considered a color.
+E.g.:
+```
+$blue : ( dark: #20438D, base: #315AAF, light: #729AEC );
+```
+
+#### Typeset
+
+Used to render all the typographies variants defined in a SCSS file. These is the expected config definition:
+```
+  {
+    "folder": "core/typography",
+    "loaderName": "typeset-list.loader",
+    "config": {
+      "typesetVarName": "font-typeset"
+    }
+  }
+```
+- `typesetVarName` the variable that have the font alternatives.
+
+A `styles.scss` file in the defined `folder` path is mandatory to be loaded and get from there the `typesetVarName` values.
+
+**E.g.**:
+```
+$font-typeset: (
+  cs-book-xxl: (
+    xs: (
+      font-family: font(circular),
+      font-size: 35px,
+      line-height: 48px,
+      font-weight: weight(regular)
+    ),
+    sm: (
+      font-size: 12px,
+      line-height: 13px
+    )
+    ...
+  ),
+  ...
+```
+
+## Running it
 
 To run the project you need the assets to be present in `distFolder` (that depends on your project dev/builds strategy), then just run
 ```bash
@@ -195,7 +282,7 @@ $ yarn styleguide
 The app will be deployed by default to [`http://localhost:3000`](http://localhost:3000)
 
 
-### Add it as a development dependency
+## Add it as a development dependency
 
 If you did not before, add this project as a npm development dependency in your `package.json` file (be careful and try to use the latest available version):
 
@@ -209,7 +296,7 @@ Or using yarn
 $ yarn add -D dynamic-styleguide
 ```
 
-## Develop installation
+#  Develop installation
 
 If you want to modify this project, you should run it in development mode:
 
@@ -229,7 +316,7 @@ If you want to modify this project, you should run it in development mode:
  $ yarn install
  ```
 
-### Run the project for develop
+## Run the project for develop
  To launch the project to work on it just launch the start script
  ```
  $ yarn dev

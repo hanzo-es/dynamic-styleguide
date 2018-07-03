@@ -35,5 +35,14 @@
         {{/inline}}
       {{/playground_section }}
     {{/if}}
+    {{#with handlerData}}
+      {{!-- Colors special handler --}}
+      {{#if (and colors allowedVariants)}}
+        {{> colors_grid allowedVariants=allowedVariants colors=colors}}
+      {{/if}}
+      {{#if typeset}}
+        {{> typeset_list typeset=typeset }}
+      {{/if}}
+    {{/with}}
   </div>
 </div>

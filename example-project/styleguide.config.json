@@ -19,5 +19,23 @@
       "content": "<img src=\"/fake-dist/assets/images/hanzo-logo.png\" width=\"140px\" height=\"42px\">",
       "href": "/"
     }
-  }
+  },
+  "extraHandlers": [
+    {
+      "folder": "core/colors",
+      "loaderName": "color-grid.loader",
+      "config": {
+        "variationsFileName": "_functions.scss",
+        "variationsVarName": "color-grades",
+        "colorsFileName": "_vars.scss"
+      }
+    },
+    {
+      "folder": "core/typography",
+      "loaderName": "typeset-list.loader",
+      "config": {
+        "typesetVarName": "font-typeset"
+      }
+    }
+  ]
 }

@@ -1,0 +1,152 @@
+////
+/// @group typography
+////
+
+
+// Define the font set here
+$font-family: (
+  work-sans: ('Work Sans', sans-serif),
+  arial: ('Arial', sans-serif)
+);
+
+/// Define available font weights
+$font-weight: (
+  thin: 100,
+  extra-light: 200,
+  light: 300,
+  regular: 400,
+  medium: 500,
+  semibold: 600,
+  bold: 700,
+  extra-bold: 800,
+  black: 900,
+);
+
+/// Define typesets & breakpoint variations
+$font-typeset: (
+  cs-book-xxl: (
+    xs: (
+      font-family: font(arial),
+      font-size: 35px,
+      line-height: 48px,
+      font-weight: weight(regular)
+    ),
+  ),
+  cs-book-xl: (
+    xs: (
+      font-family: font(arial),
+      font-size: 26px,
+      line-height: 36px,
+      font-weight: weight(regular)
+    ),
+  ),
+  cs-book-l: (
+    xs: (
+      font-family: font(arial),
+      font-size: 20px,
+      line-height: 32px,
+      font-weight: weight(regular)
+    ),
+  ),
+  cs-book-m: (
+    xs: (
+      font-family: font(arial),
+      font-size: 17px,
+      line-height: 28px,
+      font-weight: weight(regular)
+    ),
+  ),
+  cs-book-s: (
+    xs: (
+      font-family: font(arial),
+      font-size: 14px,
+      line-height: 24px,
+      font-weight: weight(regular)
+    ),
+  ),
+  cs-book-xs: (
+    xs: (
+      font-family: font(arial),
+      font-size: 12px,
+      line-height: 16px,
+      font-weight: weight(regular)
+    ),
+  ),
+  cs-medium-m: (
+    xs: (
+      font-family: font(arial),
+      font-size: 17px,
+      line-height: 28px,
+      font-weight: weight(medium)
+    ),
+  ),
+  cs-medium-s: (
+    xs: (
+      font-family: font(arial),
+      font-size: 14px,
+      line-height: 24px,
+      font-weight: weight(medium)
+    ),
+  ),
+  cs-medium-xs: (
+    xs: (
+      font-family: font(arial),
+      font-size: 12px,
+      line-height: 16px,
+      font-weight: weight(medium)
+    ),
+  ),
+  cs-medium-xs-upper: (
+    xs: (
+      font-family: font(arial),
+      font-size: 12px,
+      line-height: 16px,
+      font-weight: weight(medium),
+      text-transform: uppercase,
+      letter-spacing: 0.8px
+    ),
+  ),
+
+  titleset: (
+    sm: ( font-family: font(work-sans)),
+  ),
+  work-sm: (
+    xs: (
+      font-family: font(work-sans),
+      font-size: 11px,
+      line-height: 16px,
+      letter-spacing: 0m,
+    ),
+    sm: (
+      font-size: 12px,
+      line-height: 13px
+    )
+  ),
+  work-md: (
+    xs: (
+      font-family: font(work-sans),
+      font-size: 14px,
+      line-height: 24px,
+      font-weight: weight(light),
+      letter-spacing: .002em
+    ),
+    md: (
+      font-size: 16px
+    )
+  ),
+  work-lg: (
+    xs: (
+      font-family: font(work-sans),
+      font-size: 14px,
+      line-height: 28px,
+      font-weight: weight(light),
+      letter-spacing: .002em
+    ),
+    md: (
+      font-family: font(work-sans),
+      font-size: 20px,
+      line-height: 28px,
+      font-weight: weight(light),
+    )
+  )
+);

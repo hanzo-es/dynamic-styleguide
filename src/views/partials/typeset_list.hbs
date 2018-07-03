@@ -1,0 +1,20 @@
+<div class="typeset-wrapper">
+
+  {{#each typeset as |type| }}
+    <div class="type-row">
+      {{#with type}}
+        <br>
+        <h1>type: {{typo}}</h1>
+        {{#each sizes as |s| }}
+          {{#with s}}
+            size: {{size}}<br>
+                <span style="{{join (joinObjArr styles 'prop' 'value' ':') ';'}}">{{../typo}}:{{size}}</span><br>
+                {{{join (joinObjArr styles 'prop' 'value' ':') ';<br>'}}}
+          {{/with}}
+          <br>
+        {{/each}}
+      {{/with}}
+    </div>
+  {{/each}}
+   
+</div>
