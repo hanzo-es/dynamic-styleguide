@@ -2,10 +2,8 @@ const path = require('path');
 const rootPath = require('../lib/root-path');
 const {
   uiFolder,
-  distFolder,
-  pages: {
-    pagesFolder
-  }
+  assets,
+  pages
 } = require('../lib/config-loader');
 
 const {
@@ -21,5 +19,5 @@ const getPathFolder = (folder) => {
 };
 
 module.exports.ui = getPathFolder(uiFolder);
-module.exports.assets = getPathFolder(distFolder);
-module.exports.pages = getPathFolder(pagesFolder);
+module.exports.assets = getPathFolder(assets.relPath);
+module.exports.pages = getPathFolder(pages.relPath);

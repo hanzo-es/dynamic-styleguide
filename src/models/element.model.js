@@ -1,11 +1,9 @@
-const path = require('path');
-
 const blockLoaderStrategy = require('../lib/block-loader');
-const rawLoader = require('../lib/block-loader/raw.loader');
-const encodedLoader = require('../lib/block-loader/encoded.loader');
 const readmeLoader = require('../lib/block-loader/readme.loader');
 const styleCommentLoader = require('../lib/block-loader/style-comment.loader');
 const folderStructure = require('../lib/folder-structure');
+const rawLoader = require('../lib/block-loader/raw.loader');
+const encodedLoader = require('../lib/block-loader/encoded.loader');
 const { ui: uiProjectFolder } = require('../lib/project-folders');
 const { getIndexTree } = require('../lib/sidebar-tree');
 const { getDefinedExtraHandler } = require('../lib/extra-handlers');
@@ -13,8 +11,10 @@ const {
   README_FILE_NAME,
   EXAMPLE_FILE_NAME
 } = require('../helpers/constants');
-
-const pathJoiner = (segments) => path.join(uiProjectFolder, ...segments.filter((segment) => segment ));
+const {
+  uiPathJoiner,
+  pathJoinIfExist
+} = require('../helpers/path-helper');
 
 const elementModel = {
   params: {
@@ -27,17 +27,18 @@ const elementModel = {
   getElements(callback) {
     const err = null;
     const {firstLevel, namespace, element} = this.params;
-    const basePath = pathJoiner([firstLevel, namespace, element]);
+    const basePath = uiPathJoiner([firstLevel, namespace, element]);
     const selected = element || namespace || firstLevel || null;
 
     // Get the first level folders.
     const elements = getIndexTree();
 
     // Check if there are special handlers defined for the current element path
-    const handlers = getDefinedExtraHandler(path.join(...[firstLevel, namespace, element].filter(s=>s)));
+    const handlers = getDefinedExtraHandler(pathJoinIfExist([firstLevel, namespace, element]));
 
     // Object keys used in `handlerData`
     // color-grid : colors, allowedVariants
+    // typography : typeset
     let handlerData = {};
     if (handlers.length) {
       handlerData = handlers.reduce((acc, handler) => {
@@ -51,9 +52,9 @@ const elementModel = {
       }, handlerData);
     }
 
-    // Handle Styleguide folders
     const example = blockLoaderStrategy.setLoader(rawLoader).loadBlock(`${basePath}/${EXAMPLE_FILE_NAME}`);
     const encodedHTML = blockLoaderStrategy.setLoader(encodedLoader).loadBlock(example);
+
     const readme = blockLoaderStrategy.setLoader(readmeLoader).loadBlock({ path: `${basePath}/${README_FILE_NAME}`});
     const styleComment = blockLoaderStrategy.setLoader(styleCommentLoader).loadBlock(`${basePath}/styles.scss`);
 
@@ -61,7 +62,7 @@ const elementModel = {
     elements.children = elements.children.map( (child) => {
       if (child.name === firstLevel) {
         return {
-          ...folderStructure(pathJoiner([firstLevel]), {selected, level: 1}),
+          ...folderStructure(uiPathJoiner([firstLevel]), {selected, level: 1}),
           isFirstLevel: true
         };
       }

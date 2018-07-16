@@ -20,14 +20,12 @@
     {{/if}}
 
     {{#if example }}
-      {{#if variants }}  
-        {{#> playground_section title="Variants" }}
-          {{#*inline "slot-content"}}
-            {{> playground_variants }}
-            {{> playground_editor }}
-          {{/inline}}
-        {{/playground_section }}
-      {{/if}}
+      {{#> playground_section title=(ter variants "Variants" "") }}
+        {{#*inline "slot-content"}}
+          {{> playground_variants }}
+          {{> playground_editor }}
+        {{/inline}}
+      {{/playground_section }}
 
       {{#> playground_section title="Rendered" variation="c-playground-section--renderer" }}
         {{#*inline "slot-content"}}

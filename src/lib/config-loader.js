@@ -10,6 +10,16 @@ const {
   allowedArgs
 } = require('../helpers/constants');
 
+const joinExtraHandlerArrays = (defaultEA, userEA) => {
+  return defaultEA.reduce((acc, handler) => {
+    const match = Array.isArray(userEA) ? userEA.find((element) => element.folder === handler.folder) : false;
+    if (match) {
+      return acc.concat(match);
+    }
+    return acc.concat(handler);
+  }, []);
+};
+
 /**
  * The project config file can have a `parent` node that refers another
  * config file to inherit from.
@@ -33,4 +43,8 @@ const userConfigFilePath = isDevOrTesting ? path.join(rootPath, EXAMPLE_PROJECT_
 const defaultConfig = require(path.join(__dirname, '../../default.config.json'));
 const userConfig = loadConfigFile(userConfigFilePath, configFileName);
 
-module.exports = deepAssign(defaultConfig, userConfig);
+const extraHandlers = joinExtraHandlerArrays(defaultConfig.extraHandlers, userConfig.extraHandlers);
+
+const config = deepAssign(defaultConfig, userConfig, {extraHandlers});
+
+module.exports = config;

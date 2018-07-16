@@ -16,13 +16,13 @@ const userPackage = JSON.parse(loadUserPackagesJson());
 
 const setLocals = (req, res, next) => {
   res.locals.localStyles = [
-    '/assets/styles.css',
+    '/styleguide-assets/styles.css',
     '/codemirror/lib/codemirror.css',
     '/codemirror/theme/ttcn.css',
   ];
   res.locals.localScripts = [
     process.env.BROWSER_REFRESH_URL,
-    '/assets/app.js'
+    '/styleguide-assets/app.js'
   ];
   res.locals.title = pageTitle;
   res.locals.logo = logo || {};

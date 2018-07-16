@@ -1,16 +1,7 @@
-const path = require('path');
-
-const blockLoaderStrategy = require('../lib/block-loader');
-const rawLoader = require('../lib/block-loader/raw.loader');
-const renderedLoader = require('../lib/block-loader/rendered.loader');
-const { ui: uiProjectFolder} = require('../lib/project-folders');
-const { EXAMPLE_FILE_NAME } = require('../helpers/constants');
-
-const pathJoiner = (segments) => path.join(uiProjectFolder, ...segments.filter((segment) => segment ));
+const { parseElement } = require('../lib/addon-manager');
 
 const elementModel = {
   params: {
-    uiProjectFolder,
     firstLevel: '',
     element: '',
     namespace: ''
@@ -18,9 +9,12 @@ const elementModel = {
 
   getElements(callback) {
     const err = null;
-    const basePath = pathJoiner([this.params.firstLevel, this.params.namespace, this.params.element]);
-    const example = blockLoaderStrategy.setLoader(rawLoader).loadBlock(`${basePath}/${EXAMPLE_FILE_NAME}`);
-    const content = blockLoaderStrategy.setLoader(renderedLoader).loadBlock(example);
+
+    // Get the HTML code to be rendered depending on the project type
+    // The proper "addon" will be loaded and used to parse the client project
+    // source files
+    // By default, are "Static HTML" files
+    const content = parseElement(this.params);
 
     const payload = {
       content

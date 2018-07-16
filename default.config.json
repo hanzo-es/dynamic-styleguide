@@ -19,5 +19,24 @@
       "href": "/"
     },
     "sideMenuLinks": []
-  }
+  },
+  "projectType": "HTML",
+  "extraHandlers": [
+    {
+      "folder": "core/colors",
+      "loaderName": "color-grid.loader",
+      "config": {
+        "variationsFileName": "_functions.scss",
+        "variationsVarName": "color-grades",
+        "colorsFileName": "_vars.scss"
+      }
+    },
+    {
+      "folder": "core/typography",
+      "loaderName": "typeset-list.loader",
+      "config": {
+        "typesetVarName": "font-typeset"
+      }
+    }
+  ]
 }

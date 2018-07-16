@@ -52,6 +52,8 @@ const folderStructure = (dir, options = {}) => {
         node.children.some(child => child.isSelected || child.isOpen));
     }
     return node;
+  } else {
+    console.error(`[Folder.Structure] Folder ${dir} does not exist`);
   }
   return null;
 };

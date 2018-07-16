@@ -1,6 +1,6 @@
 {
   "name": "dynamic-styleguide",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "description": "Tool to dynamically generate styleguides from UI library. Used either internaly while working on components/modules or to share documentation with clients.",
   "engines": {
     "node": ">=8.9.0"
@@ -55,6 +55,7 @@
     "hbs": "~4.0.1",
     "html-entities": "^1.2.1",
     "json-loader": "^0.5.7",
+    "mamacro": "^0.0.3",
     "modernizr": "^3.6.0",
     "modernizr-loader": "^1.0.1",
     "morgan": "~1.9.0",
@@ -69,6 +70,7 @@
     "style-loader": "^0.20.3",
     "uglifyjs-webpack-plugin": "^1.2.4",
     "webpack": "^4.8.3",
+    "xml2json": "^0.11.2",
     "yargs": "^11.0.0"
   },
   "devDependencies": {

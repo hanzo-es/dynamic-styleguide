@@ -1,3 +1,41 @@
 h1{
   color: dodgerblue
 }
+
+.c-hello {
+  display: inline-block;
+  width: 100%;
+  min-height: 32px;
+  padding: 8px;
+  background-color: #eeaa40;
+  border: 1px solid #eeaa40;
+  border-radius: 5px
+}
+
+.c-hello--underline {
+  text-decoration: underline
+}
+
+.c-hello--italic {
+  font-style: italic
+}
+
+.c-hello--green {
+  background-color: #bdea54;
+  border-color: #bdea54
+}
+
+.c-hello--transparent {
+  background-color: transparent;
+  border-color: #000
+}
+
+.c-hello--medium {
+  font-size: 20px;
+  padding: 16px
+}
+
+.c-hello--big {
+  font-size: 25px;
+  padding: 32px
+}

@@ -1,7 +1,6 @@
 # dynamic-styleguide
 
-This projects is used to define and use a set of components and web elements as style guide, serving them with an use explanation, they implementation alternatives and a live editor.
-Also provides a use to serve static pages.
+This projects is used to define and use a set of components and web elements as style guide, serving them with an use explanation, they implementation alternatives and a live editor. It also provides a use to serve static pages.
 
 ## Prerequisites
 
@@ -15,7 +14,7 @@ First, add this project as a npm development dependency in your `package.json` f
 
 ```json
   "devDependencies": {
-    "dynamic-styleguide": "^0.1.1"
+    "dynamic-styleguide": "^1.0.0"
   }
 ```
 
@@ -43,6 +42,8 @@ In the same file, but in the scripts node, add `"styleguide": "dynamic-styleguid
     ]
   },
   "elementsUrlDirectory": "view",
+  "projectType": "HTML",
+
   "pages": {
     "pagesFolder": "pages",
     "pagesUrlNamespace": "pages"
@@ -56,7 +57,6 @@ In the same file, but in the scripts node, add `"styleguide": "dynamic-styleguid
     },
     "sideMenuLinks": []
   },
-
   "extraHandlers": [
     {
       "folder": "core/colors",
@@ -65,6 +65,13 @@ In the same file, but in the scripts node, add `"styleguide": "dynamic-styleguid
         "variationsFileName": "_functions.scss",
         "variationsVarName": "color-grades",
         "colorsFileName": "_vars.scss"
+      }
+    },
+    {
+      "folder": "core/typography",
+      "loaderName": "typeset-list.loader",
+      "config": {
+        "typesetVarName": "font-typeset"
       }
     }
   ]
@@ -78,7 +85,8 @@ In the same file, but in the scripts node, add `"styleguide": "dynamic-styleguid
  - `deployPort` defines which port will be used, by default it is `3000`.
  - `bundled` defines the routes to the specific files that will be loaded.
  - `elementsUrlDirectory` is the the first part of the URL path under which the elements pages will be rendered. The default value is `view` and can not be empty.
-
+ - `projectType`: Defines how the content will be handled. By default, just plain `HTML` content
+ 
  **pages**
 - `pagesFolder` defines the folder where the pages to read their comments are.
 - `pagesUrlNamespace` is the the first part of the URL path under which the pages pages will be rendered. The default value is `pages` and can not be empty.
@@ -93,6 +101,7 @@ In the same file, but in the scripts node, add `"styleguide": "dynamic-styleguid
  - `folder` defines witch folder will be handled
  - `loaderName` is the loader file name that will be use
  - `config` is the extra data that will be passed to the loader
+The array defined above contains the extra handlers that will be loaded by default.
 
 ## Expected UI folder structure
 
@@ -170,25 +179,9 @@ To define where to apply this classes, in own `example.txt` we have to add `{{va
 
 ## Expected pages folder structure
 
-The pages that will be rendered are inside the  `distFolder` folder, and should have the same folders and file name structure as `pagesFolder`. The latter folder's files are expected to have defined some metadata as comments, e.g:
-```
----
-  "title": "Main page",
-  "template": "default"
----
-```
-This comments will be sued to generate the cover page to chose what page/file to display.
-`index.html` filename must not be used, as this will be the cover page file name.
-Example of expected file structure for `distPagesFolder`:
+To allow compatibility with any kind of static site generator, pages section reads a `sitemap.xml` to build the pages list.
 
-// TODO: folders are not supported in a first stage.
-```
-pages
-├── main.html
-├── some-category
-|   └── other.html
-├── ...
-```
+We updated `dist` property on config object so we can have separated folder for assets and pages. Pages and assets now are objects with `relPath` and `slug` properties. This will make sure that the styleguide and the project itself serve static content properly.
 
 ## Arguments
 
@@ -208,6 +201,9 @@ As some elements need to render extra information, extra handlers can be defined
 `folder` is the relative path of the element starting from the *ui folder*.
 
 The data that the loader(s) return will be passed to the element template.
+The element's folders that have defined extra handler are:
+- `core/colors`
+- `core/typography`
 
 ### Available handlers
 
@@ -288,7 +284,7 @@ If you did not before, add this project as a npm development dependency in your 
 
 ```json
   "devDependencies": {
-    "dynamic-styleguide": "^0.1.2"
+    "dynamic-styleguide": "^1.0.0"
   }
 ```
 Or using yarn

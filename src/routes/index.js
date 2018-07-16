@@ -3,13 +3,13 @@ const router = express.Router();
 const path = require('path');
 const rootPath = require('../lib/root-path');
 const {
-  distFolder,
   elementsUrlDirectory,
-  pages: {
-    pagesUrlNamespace
-  },
+  pages,
+  assets
 } = require('../lib/config-loader');
-const { assets: assetsFolder} = require('../lib/project-folders');
+const {
+  pages: pagesFolder,
+} = require('../lib/project-folders');
 
 const { DEFAULT_ELEMENTS_URL_DIRECTORY } = require('../helpers/constants');
 
@@ -23,16 +23,17 @@ const directory = elementsUrlDirectory || DEFAULT_ELEMENTS_URL_DIRECTORY;
 
 router.use('/**', LocalsController);
 router.use('/', IndexController );
-router.use(`/${directory}/${pagesUrlNamespace}`, PageController );
+router.use(`/${directory}/${pages.slug}`, PageController );
 router.use(`/${directory}`, ElementController );
-router.use(`/${distFolder}`, AssetsController );
+router.use(`/${assets.slug}`, AssetsController );
 router.use('/content', ElementContentController );
 
-// Pages routes
-router.use(`/${pagesUrlNamespace}`, express.static(assetsFolder));
-
+// Pages Route
+router.use(`/${pages.slug}`, express.static(pagesFolder));
+console.log(`[Route] /${pages.slug} => ${pagesFolder}`);
 
 router.use('/codemirror', express.static( path.join(rootPath, 'node_modules', 'codemirror') ));
+console.log(`[Route] /codemirror => ${path.join(rootPath, 'node_modules', 'codemirror')}`);
 
 
 module.exports = router;

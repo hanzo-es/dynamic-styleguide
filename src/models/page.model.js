@@ -1,14 +1,12 @@
-const path = require('path');
-const blockLoaderStrategy = require('../lib/block-loader');
-const rawLoader = require('../lib/block-loader/raw.loader');
-const pagesCommentLoader = require('../lib/block-loader/pages-comment.loader');
-const folderStructure = require('../lib/folder-structure');
+const fs = require('fs');
+const xml2json = require('xml2json');
 const {
   pages: pagesFolder
 } = require('../lib/project-folders');
+const {
+  pages
+} = require('../lib/config-loader');
 const { getIndexTree } = require('../lib/sidebar-tree');
-
-const removeLastFolder = (dirPath) => dirPath.split('/').slice(0, -1).join('/');
 
 const pageModel = {
   params: {
@@ -16,44 +14,53 @@ const pageModel = {
   },
 
   getPages(callback) {
-    const err = null;
-    const { firstLevel } = this.params;
+    fs.readFile(`${pagesFolder}/sitemap.xml`, (err, data) => {
+      if (!err) {
+        // Parse sitemap.xml file present on `distFolder`
+        const sitemap = JSON.parse(xml2json.toJson(data));
 
-    // Get the first level folders.
-    const elements = getIndexTree();
-
-    // For the selected element, get its children
-    elements.children = elements.children.map( (child) => {
-      if (child.name === firstLevel) {
-        const pagesFiles = folderStructure(pagesFolder, {selected: firstLevel, level: 1});
-        const htmlFilesRegEx = /[\w-]*\.html/;
-        pagesFiles.children = pagesFiles.children.map(pageFile => {
-          if (htmlFilesRegEx.test(pageFile.name)) {
-            const rawPage = blockLoaderStrategy.setLoader(rawLoader).loadBlock(path.join(removeLastFolder(pagesFolder), pageFile.url ));
-            const pageComments = blockLoaderStrategy.setLoader(pagesCommentLoader).loadBlock(rawPage);
+        // If sitemap found build `pagesFiles` array
+        if (sitemap.urlset && sitemap.urlset.url) {
+          const pagesFiles = sitemap.urlset.url.map((url) => {
             return {
-              ...pageFile,
-              name: pageComments.title || pageFile.name,
+              url: `${pages.slug}${url.loc}`,
+              isSelected: false,
+              level: 2,
+              name: url.title,
+              type: 'file',
               isPage: true
             };
-          }
-        });
+          });
 
-        return {
-          ...pagesFiles,
-          isFirstLevel: true,
-          hasClickableChildren: pagesFiles.children.length > 0,
-          isSelected: true,
-          isOpen: true
-        };
+          const { firstLevel } = this.params;
+
+          // Get the first level folders.
+          const elements = getIndexTree();
+
+          const pageNode = elements.children.find((item) => {
+            return (item.name === 'pages');
+          });
+
+          // This adds pages to the `pages` node if present;
+          if (pageNode) {
+            pageNode.children = pagesFiles;
+            pageNode.isSelected = true;
+            pageNode.level = 1;
+            pageNode.hasClickableChildren = true;
+            pageNode.isOpen = true;
+          }
+
+          callback( err, {
+            elementType: firstLevel,
+            elements,
+            selected: firstLevel
+          } );
+        }
+      } else {
+        console.error(`[Page.Model] Sitemap not found in ${pagesFolder}`);
+        return false;
       }
-      return {...child, isFirstLevel: true};
     });
-    callback( err, {
-      elementType: firstLevel,
-      elements,
-      selected: firstLevel
-    } );
   },
 
   updateParams(params) {

@@ -30,3 +30,7 @@ exports.DEFAULT_PAGES_URL_DIRECTORY = 'pages';
 exports.allowedArgs = {
   customConfigFile: 'configFile'
 };
+exports.supportedProjectTypes = {
+  html: 'HTML'
+};
+exports.VARIANT_REF = '{{variant}}';

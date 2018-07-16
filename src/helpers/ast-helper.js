@@ -32,8 +32,6 @@ const breadthSearchByType = (tree, type, maxDeep = 1, returnFirstMatch) => {
     }
     return matchedNodes;
   } catch(e) {
-    // eslint-disable-next-line
-    console.error('There was an error breadth searching: ', e);
     return null;
   }
 };
