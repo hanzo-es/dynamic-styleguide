@@ -1,8 +1,8 @@
 <div class="c-variant">
   {{#each variants as |variant index|}}
-    <div class="c-playground-subsection">
+    <div class="c-subsection">
       {{#if variant.title}}
-        <h2 class="playground-section-title">{{variant.title}}</h2>
+        <h2 class="title">{{variant.title}}</h2>
       {{/if}}
       {{#if (eeq variant.type 'disjunction')}}
         <div class="variant-group" role="group">

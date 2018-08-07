@@ -2,15 +2,12 @@ const blockLoaderStrategy = require('../lib/block-loader');
 const readmeLoader = require('../lib/block-loader/readme.loader');
 const styleCommentLoader = require('../lib/block-loader/style-comment.loader');
 const folderStructure = require('../lib/folder-structure');
-const rawLoader = require('../lib/block-loader/raw.loader');
-const encodedLoader = require('../lib/block-loader/encoded.loader');
+const { parseElementExamples } = require('../lib/addon-manager');
+
 const { ui: uiProjectFolder } = require('../lib/project-folders');
 const { getIndexTree } = require('../lib/sidebar-tree');
 const { getDefinedExtraHandler } = require('../lib/extra-handlers');
-const {
-  README_FILE_NAME,
-  EXAMPLE_FILE_NAME
-} = require('../helpers/constants');
+const { README_FILE_NAME } = require('../helpers/constants');
 const {
   uiPathJoiner,
   pathJoinIfExist
@@ -52,8 +49,8 @@ const elementModel = {
       }, handlerData);
     }
 
-    const example = blockLoaderStrategy.setLoader(rawLoader).loadBlock(`${basePath}/${EXAMPLE_FILE_NAME}`);
-    const encodedHTML = blockLoaderStrategy.setLoader(encodedLoader).loadBlock(example);
+    // Get all the examples to be show according to the project type
+    const examples = parseElementExamples(this.params);
 
     const readme = blockLoaderStrategy.setLoader(readmeLoader).loadBlock({ path: `${basePath}/${README_FILE_NAME}`});
     const styleComment = blockLoaderStrategy.setLoader(styleCommentLoader).loadBlock(`${basePath}/styles.scss`);
@@ -74,7 +71,7 @@ const elementModel = {
       elements,
       selected,
       readme,
-      example: encodedHTML,
+      examples,
       handlerData
     };
 

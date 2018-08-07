@@ -31,6 +31,14 @@ exports.allowedArgs = {
   customConfigFile: 'configFile'
 };
 exports.supportedProjectTypes = {
-  html: 'HTML'
+  html: 'html',
+  hugo: 'hugo'
 };
 exports.VARIANT_REF = '{{variant}}';
+
+// https://codemirror.net/mode/
+exports.editorSyntaxes = {
+  'html': 'htmlmixed',
+  'javascript': 'javascript'
+};
+

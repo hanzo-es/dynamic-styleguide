@@ -7,7 +7,31 @@
   </url>
 
   <url>
-    <loc>/subfolder/page-two.html</loc>
+    <loc>/folder/page-two.html</loc>
     <title>Page Two</title>
+  </url>
+
+  <url>
+    <loc>/other-folder/page-three.html</loc>
+    <title>Page Three</title>
+  </url>
+
+  <url>
+    <loc>/other-folder/page-four.html</loc>
+    <title>Page Four</title>
+  </url>
+
+  <url>
+    <loc>/other-folder/subfolder/page-five.html</loc>
+    <title>Page Five</title>
+  </url>
+
+  <url>
+    <loc>/appotment-center/</loc>
+    <title>Appoitment Center</title>
+  </url>
+  <url>
+    <loc>/appotment-center/user/</loc>
+    <title>Appoitment Center User</title>
   </url>
 </urlset>

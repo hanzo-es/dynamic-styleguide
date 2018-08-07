@@ -39,7 +39,9 @@ class PlaygroundModule extends BaseComponent {
   }
 
   playgroundVariantsUpdated() {
-    this.editorComponent.updateVariants(this.getActiveVariants());
+    const variants = this.getActiveVariants();
+    this.editorComponent.updateVariants(variants);
+    this.rendererComponent.updateVariants(variants);
   }
 
   playgroundEditorUpdated(data) {

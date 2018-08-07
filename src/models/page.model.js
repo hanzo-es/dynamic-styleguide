@@ -3,10 +3,9 @@ const xml2json = require('xml2json');
 const {
   pages: pagesFolder
 } = require('../lib/project-folders');
-const {
-  pages
-} = require('../lib/config-loader');
+const { pages } = require('../lib/config-loader');
 const { getIndexTree } = require('../lib/sidebar-tree');
+const { createPageStructure } = require('../helpers/url-helper');
 
 const pageModel = {
   params: {
@@ -21,16 +20,7 @@ const pageModel = {
 
         // If sitemap found build `pagesFiles` array
         if (sitemap.urlset && sitemap.urlset.url) {
-          const pagesFiles = sitemap.urlset.url.map((url) => {
-            return {
-              url: `${pages.slug}${url.loc}`,
-              isSelected: false,
-              level: 2,
-              name: url.title,
-              type: 'file',
-              isPage: true
-            };
-          });
+          const pagesFiles = createPageStructure(sitemap.urlset.url, {slug: pages.slug});
 
           const { firstLevel } = this.params;
 
@@ -41,9 +31,8 @@ const pageModel = {
             return (item.name === 'pages');
           });
 
-          // This adds pages to the `pages` node if present;
+          // Mark page side menu entry as selected
           if (pageNode) {
-            pageNode.children = pagesFiles;
             pageNode.isSelected = true;
             pageNode.level = 1;
             pageNode.hasClickableChildren = true;
@@ -53,6 +42,7 @@ const pageModel = {
           callback( err, {
             elementType: firstLevel,
             elements,
+            pagesFiles,
             selected: firstLevel
           } );
         }

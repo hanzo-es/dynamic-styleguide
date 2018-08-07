@@ -12,26 +12,26 @@
 
   <div class="content">
     {{#if readme }}
-      {{#> playground_section title="Readme" }}
+      {{#> section title="Readme" }}
         {{#*inline "slot-content"}}
           {{> playground_markdown }}
         {{/inline}}
-      {{/playground_section }}
+      {{/section }}
     {{/if}}
 
-    {{#if example }}
-      {{#> playground_section title=(ter variants "Variants" "") }}
+    {{#if examples.length }}
+      {{#> section title=(ter variants "Variants" "") }}
         {{#*inline "slot-content"}}
           {{> playground_variants }}
           {{> playground_editor }}
         {{/inline}}
-      {{/playground_section }}
+      {{/section }}
 
-      {{#> playground_section title="Rendered" variation="c-playground-section--renderer" }}
+      {{#> section title="Rendered" variation="c-section--breathe c-section--white-smoke" }}
         {{#*inline "slot-content"}}
           {{> playground_renderer }}
         {{/inline}}
-      {{/playground_section }}
+      {{/section }}
     {{/if}}
     {{#with handlerData}}
       {{!-- Colors special handler --}}

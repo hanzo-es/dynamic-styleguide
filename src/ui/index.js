@@ -14,10 +14,11 @@ import './core/z-index';
 // Components
 import './components/brand/logo';
 import './components/layouts/layout';
-import './components/containers/playground-section';
-import './components/containers/playground-subsection';
+import './components/containers/section';
+import './components/containers/subsection';
 import './components/nav/sidebar-navlist';
 import './components/nav/navitem';
+
 
 import './components/playground/markdown';
 import './components/playground/variant';
@@ -27,4 +28,3 @@ import './components/playground/renderer';
 // Modules
 import './modules/sidebar';
 import './modules/playground';
-

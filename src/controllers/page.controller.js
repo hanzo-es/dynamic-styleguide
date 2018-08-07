@@ -6,7 +6,7 @@ const { pages: { pagesUrlNamespace } } = require('../lib/config-loader');
 const loadPageDetails = (req, res) => {
   PageModel.updateParams({firstLevel: pagesUrlNamespace});
   PageModel.getPages( (err, payload) => {
-    res.render('index', {
+    res.render('pages-cover', {
       ...payload
     });
   });

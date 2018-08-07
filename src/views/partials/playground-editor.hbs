@@ -1,8 +1,17 @@
 <div class="c-editor">
-  <div class="c-playground-subsection c-playground-subsection--borderless">
-    <h2 class="playground-section-title">Example</h2>
-    <div class="playground-content">
-        <textarea class="textarea">{{{example}}}</textarea>
+  <div class="c-subsection c-subsection--borderless">
+    <h2 class="title">Example</h2>
+    <div class="content">
+      {{#each examples as |example|}}
+        {{!-- One and only one editable example is expected --}}
+        {{ter (gt ../examples.length 1) example.fileName ''}}
+        <textarea
+          class="{{ter example.readOnly 'codemirror-textarea-readonly' 'codemirror-textarea-editable'}}"
+          data-mode="{{example.mode}}"
+        >
+          {{{example.content}}}
+        </textarea>
+      {{/each}}
     </div>
   </div>
 </div>

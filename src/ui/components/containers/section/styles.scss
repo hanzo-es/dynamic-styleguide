@@ -1,0 +1,24 @@
+@import 'ui/index';
+
+.c-section {
+    @include color-variations;
+    padding: spacing(9);
+    width: 100%;
+    color: color($arsenic);
+
+    > .title {
+      @include useType(big);
+    }
+
+    // VARIATIONS
+
+    /// This adds some vertical padding and white space under the title
+    &--breathe {
+      padding-top: spacing(10);
+      padding-bottom: spacing(15);
+
+      > .title {
+        margin-bottom: spacing(15);
+      }
+    }
+}

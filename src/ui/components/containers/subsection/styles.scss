@@ -1,14 +1,19 @@
 @import 'ui/index';
 
-.c-playground-subsection {
+.c-subsection {
     display: flex;
     border-bottom: 1px solid color($whisper);
     padding: spacing(9) 0 spacing(12) 0;
 
-  .playground-section-title {
+  > .title {
     @include useType(medium);
     display: flex;
     flex: 0 0 spacing(36);
+  }
+
+  > .content {
+    width: 100%;
+    overflow-x: auto;
   }
 
   &--borderless {

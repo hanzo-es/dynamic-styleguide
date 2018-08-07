@@ -50,7 +50,7 @@ $font-typeset: (
     xs: (
       font-family: font(helvetica),
       font-weight: weight(regular),
-      font-size: 20px, 
+      font-size: 20px,
       line-height: 30px
     )
   ),
@@ -58,15 +58,15 @@ $font-typeset: (
     xs: (
       font-family: font(helvetica),
       font-weight: weight(regular),
-      font-size: 32px, 
-      line-height: 48px
+      font-size: 32px,
+      line-height: 40px
     )
   ),
   code: (
-    xs: ( 
-      font-family: font(code), 
-      font-weight: weight(regular), 
-      font-size: 14px, 
+    xs: (
+      font-family: font(code),
+      font-weight: weight(regular),
+      font-size: 14px,
       line-height: 20px
     )
   )

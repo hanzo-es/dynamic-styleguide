@@ -1,10 +1,11 @@
-const { parseElement } = require('../lib/addon-manager');
+const { parseElementContent } = require('../lib/addon-manager');
 
 const elementModel = {
   params: {
     firstLevel: '',
     element: '',
-    namespace: ''
+    namespace: '',
+    variants: '[]'
   },
 
   getElements(callback) {
@@ -14,7 +15,7 @@ const elementModel = {
     // The proper "addon" will be loaded and used to parse the client project
     // source files
     // By default, are "Static HTML" files
-    const content = parseElement(this.params);
+    const content = parseElementContent(this.params);
 
     const payload = {
       content

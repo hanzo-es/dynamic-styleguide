@@ -2,7 +2,7 @@
 /// @group utils
 ////
 
-/// Adds hover modifier only to not touch environments 
+/// Adds hover modifier only to not touch environments
 @mixin hover() {
   @include whenNoTouch {
     &:hover {
@@ -74,4 +74,18 @@
   }
 }
 
+///
+@mixin color-variations {
+  &--white-smoke {
+    background-color: color($white-smoke);
+  }
 
+  &--transparent {
+    background-color: transparent;
+  }
+
+  &--dark {
+    background-color: color($dark);
+    color: color($white);
+  }
+}

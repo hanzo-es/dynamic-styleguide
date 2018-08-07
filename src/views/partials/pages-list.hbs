@@ -1,0 +1,16 @@
+<ul>
+  {{#each (forIn pagesFiles) as |pageFolder| }}
+    {{#if (eeq (itemAt pageFolder 0) 'pagesArray')}}
+      {{#each (itemAt pageFolder 1) as |page| }}
+        <li>
+          <a target="_blank" href="/{{page.url}}">{{page.name}}</a>
+        </li>
+      {{/each}}
+    {{else}}
+      <li>
+        <b>{{itemAt pageFolder 0}}</b>
+        {{> pages_list pagesFiles=(itemAt pageFolder 1) }}
+      </li>
+    {{/if}}
+  {{/each}}
+</ul>

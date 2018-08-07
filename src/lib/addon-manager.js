@@ -1,21 +1,30 @@
 
-const staticAddon = require('./addons/static.addon');
 const { projectType } = require('../lib/config-loader');
 const { supportedProjectTypes } = require('../helpers/constants');
 
-const parseElement = (params) => {
-  const { html: HTML } = supportedProjectTypes;
+const PARSE_EXAMPLE = 'example';
+const PARSE_CONTENT = 'content';
+const {
+  html: HTML,
+  hugo: HUGO
+} = supportedProjectTypes;
 
+const parseElement = (type) => (params) => {
   let parser;
-  switch (projectType) {
+  switch (projectType.toLowerCase()) {
+    case HUGO:
+      parser = require('./addons/hugo.addon');
+      break;
     case HTML:
     default:
-      parser = staticAddon;
+      parser = require('./addons/static.addon');
       break;
   }
-  return parser.parse(params);
+  const {parseExamples, parseContent } = parser;
+  return (type === PARSE_EXAMPLE) ? parseExamples(params) : parseContent(params);
 };
 
 module.exports = {
-  parseElement
+  parseElementContent: parseElement(PARSE_CONTENT),
+  parseElementExamples: parseElement(PARSE_EXAMPLE)
 };

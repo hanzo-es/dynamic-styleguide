@@ -7,7 +7,7 @@ const loadElementDetails = (req, res) => {
   const stylesheets = AssetsModel.getCSSDependencies();
   const scripts = AssetsModel.getJSDependencies();
 
-  ContentModel.updateParams(req.params);
+  ContentModel.updateParams({...req.params, ...req.query});
   ContentModel.getElements( (err, payload) => {
     res.render('element-content', {
       stylesheets,

@@ -14,7 +14,7 @@ First, add this project as a npm development dependency in your `package.json` f
 
 ```json
   "devDependencies": {
-    "dynamic-styleguide": "^1.0.0"
+    "dynamic-styleguide": "^1.1.0"
   }
 ```
 
@@ -85,7 +85,10 @@ In the same file, but in the scripts node, add `"styleguide": "dynamic-styleguid
  - `deployPort` defines which port will be used, by default it is `3000`.
  - `bundled` defines the routes to the specific files that will be loaded.
  - `elementsUrlDirectory` is the the first part of the URL path under which the elements pages will be rendered. The default value is `view` and can not be empty.
- - `projectType`: Defines how the content will be handled. By default, just plain `HTML` content
+ - `projectType`: Defines how the content will be handled. By default, just plain `HTML` content. The values are unsensitive case
+    Allowed project types:
+    - hugo
+    - html
  
  **pages**
 - `pagesFolder` defines the folder where the pages to read their comments are.
@@ -284,7 +287,7 @@ If you did not before, add this project as a npm development dependency in your 
 
 ```json
   "devDependencies": {
-    "dynamic-styleguide": "^1.0.0"
+    "dynamic-styleguide": "^1.1.0"
   }
 ```
 Or using yarn

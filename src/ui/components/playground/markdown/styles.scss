@@ -4,7 +4,7 @@
   @include useType(default);
   color: color($dark, 'light');
   border-bottom: 1px solid color($whisper);
-  
+
   a {
     @include colorizeLink($dark);
     text-decoration: none;
@@ -124,7 +124,7 @@
     white-space: pre-wrap;
     word-wrap: break-word;
     padding: spacing(4);
-    
+
     code {
       padding: 0;
     }
@@ -173,7 +173,7 @@
     margin: spacing(4) 0;
     padding: 0 0 0 spacing(8);
   }
-  
+
   ul {
     list-style-type: disc;
   }
