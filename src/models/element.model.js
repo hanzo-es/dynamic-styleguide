@@ -35,7 +35,8 @@ const elementModel = {
 
     // Object keys used in `handlerData`
     // color-grid : colors, allowedVariants
-    // typography : typeset
+    // typography-list : typeset
+    // icons-table : icons, iconContainerTemplate
     let handlerData = {};
     if (handlers.length) {
       handlerData = handlers.reduce((acc, handler) => {

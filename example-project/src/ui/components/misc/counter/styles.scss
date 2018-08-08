@@ -1,0 +1,19 @@
+@import 'ui/index';
+@import 'vars';
+
+///
+/// This is the bubble component
+/// @group c-counter
+///
+
+.c-counter {
+  @include useType(cs-medium-xs);
+  display: inline-block;
+  border-radius: $counter-defaultSize / 2;
+  text-align: center;
+  background-color: color($pink);
+  color: color($white);
+  min-width: $counter-defaultSize;
+  height: $counter-defaultSize;
+  line-height: $counter-defaultSize !important;
+}

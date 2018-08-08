@@ -10,6 +10,7 @@ import './core/typography';
 
 // Components
 import './components/misc/hello';
+import './components/misc/counter';
 
 // Modules
 // import './modules/footer';

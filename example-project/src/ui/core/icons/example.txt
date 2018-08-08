@@ -1,0 +1,7 @@
+<span class="cr-icon {{variant}}">
+  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
+    <path id="Path-7_1_" fill="none" stroke="#FC5770" stroke-width="2" d="M19,1L1,19"/>
+    <path id="Path-7" fill="none" stroke="#FC5770" stroke-width="2" d="M19,19L1,1"/>
+  </svg>
+</span>

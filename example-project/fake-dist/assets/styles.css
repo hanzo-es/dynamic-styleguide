@@ -39,3 +39,149 @@ h1{
   font-size: 25px;
   padding: 32px
 }
+
+.cr-icon {
+  margin: auto;
+  display: inline-flex;
+  user-select: none;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+.cr-icon > svg {
+  flex: 1;
+}
+@media screen {
+  .cr-icon > svg g,
+  .cr-icon > svg path,
+  .cr-icon > svg rect,
+  .cr-icon > svg line,
+  .cr-icon > svg circle,
+  .cr-icon > svg polygon,
+  .cr-icon > svg polyline {
+    transition: buildtransition(fill, stroke, 400ms, 0ms);
+  }
+}
+.cr-icon--no-stroke > svg g,
+.cr-icon--no-stroke > svg path,
+.cr-icon--no-stroke > svg rect,
+.cr-icon--no-stroke > svg line,
+.cr-icon--no-stroke > svg circle,
+.cr-icon--no-stroke > svg polygon,
+.cr-icon--no-stroke > svg polyline {
+  stroke: none;
+}
+.cr-icon--no-fill > svg g,
+.cr-icon--no-fill > svg path,
+.cr-icon--no-fill > svg rect,
+.cr-icon--no-fill > svg line,
+.cr-icon--no-fill > svg circle,
+.cr-icon--no-fill > svg polygon,
+.cr-icon--no-fill > svg polyline {
+  fill: none;
+}
+.cr-icon--stroke-pink > svg g,
+.cr-icon--stroke-pink > svg path,
+.cr-icon--stroke-pink > svg rect,
+.cr-icon--stroke-pink > svg line,
+.cr-icon--stroke-pink > svg circle,
+.cr-icon--stroke-pink > svg polygon,
+.cr-icon--stroke-pink > svg polyline {
+  stroke: #FC5770 !important;
+}
+.cr-icon--stroke-grey > svg g,
+.cr-icon--stroke-grey > svg path,
+.cr-icon--stroke-grey > svg rect,
+.cr-icon--stroke-grey > svg line,
+.cr-icon--stroke-grey > svg circle,
+.cr-icon--stroke-grey > svg polygon,
+.cr-icon--stroke-grey > svg polyline {
+  stroke: #D6D6D6 !important;
+}
+.cr-icon--stroke-blue > svg g,
+.cr-icon--stroke-blue > svg path,
+.cr-icon--stroke-blue > svg rect,
+.cr-icon--stroke-blue > svg line,
+.cr-icon--stroke-blue > svg circle,
+.cr-icon--stroke-blue > svg polygon,
+.cr-icon--stroke-blue > svg polyline {
+  stroke: #315AAF !important;
+}
+.cr-icon--stroke-white > svg g,
+.cr-icon--stroke-white > svg path,
+.cr-icon--stroke-white > svg rect,
+.cr-icon--stroke-white > svg line,
+.cr-icon--stroke-white > svg circle,
+.cr-icon--stroke-white > svg polygon,
+.cr-icon--stroke-white > svg polyline {
+  stroke: #ffffff !important;
+}
+.cr-icon--stroke-black > svg g,
+.cr-icon--stroke-black > svg path,
+.cr-icon--stroke-black > svg rect,
+.cr-icon--stroke-black > svg line,
+.cr-icon--stroke-black > svg circle,
+.cr-icon--stroke-black > svg polygon,
+.cr-icon--stroke-black > svg polyline {
+  stroke: #000000 !important;
+}
+.cr-icon--fill-pink > svg g,
+.cr-icon--fill-pink > svg path,
+.cr-icon--fill-pink > svg rect,
+.cr-icon--fill-pink > svg line,
+.cr-icon--fill-pink > svg circle,
+.cr-icon--fill-pink > svg polygon,
+.cr-icon--fill-pink > svg polyline {
+  fill: #FC5770 !important;
+}
+.cr-icon--fill-grey > svg g,
+.cr-icon--fill-grey > svg path,
+.cr-icon--fill-grey > svg rect,
+.cr-icon--fill-grey > svg line,
+.cr-icon--fill-grey > svg circle,
+.cr-icon--fill-grey > svg polygon,
+.cr-icon--fill-grey > svg polyline {
+  fill: #D6D6D6 !important;
+}
+.cr-icon--fill-blue > svg g,
+.cr-icon--fill-blue > svg path,
+.cr-icon--fill-blue > svg rect,
+.cr-icon--fill-blue > svg line,
+.cr-icon--fill-blue > svg circle,
+.cr-icon--fill-blue > svg polygon,
+.cr-icon--fill-blue > svg polyline {
+  fill: #315AAF !important;
+}
+.cr-icon--fill-white > svg g,
+.cr-icon--fill-white > svg path,
+.cr-icon--fill-white > svg rect,
+.cr-icon--fill-white > svg line,
+.cr-icon--fill-white > svg circle,
+.cr-icon--fill-white > svg polygon,
+.cr-icon--fill-white > svg polyline {
+  fill: #ffffff !important;
+}
+.cr-icon--fill-black > svg g,
+.cr-icon--fill-black > svg path,
+.cr-icon--fill-black > svg rect,
+.cr-icon--fill-black > svg line,
+.cr-icon--fill-black > svg circle,
+.cr-icon--fill-black > svg polygon,
+.cr-icon--fill-black > svg polyline {
+  fill: #000000 !important;
+}
+
+.c-counter {
+  font-family: circular,sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  display: inline-block;
+  border-radius: 9px;
+  text-align: center;
+  background-color: #fc5770;
+  color: #fff;
+  min-width: 18px;
+  height: 18px;
+  line-height: 18px!important;
+}

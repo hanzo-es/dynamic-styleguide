@@ -37,6 +37,13 @@
       "config": {
         "typesetVarName": "font-typeset"
       }
+    },
+    {
+      "folder": "core/icons",
+      "loaderName": "icons-table.loader",
+      "config": {
+        "containerTemplate": "<span class=\"cr-icon {{variant}}\">{{content}}</span>"
+      }
     }
   ]
 }

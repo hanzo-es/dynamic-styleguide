@@ -1,52 +1,26 @@
-<style>
-  .color-wrapper{
-    display: flex;
-    flex-direction: column;
-  }
-  .color-row{
-    display: flex;
-    justify-content: space-evenly;
-  }
-  .color-cell{
-    width:200px;
-    margin-top: 10px;
-    text-align: center;
-  }
-  .color-circle{
-    height:100px;
-    width:100px;
-    border: solid black 2px;
-    border-radius: 5px;
-    display: inline-block;
-  }
-</style>
-<div class="color-wrapper">
-  <div class="color-row">
-    <div class="color-cell header-cell">
-      Colors \ Variants
-    </div>
-    {{#each allowedVariants as |allowedVariant index|}}
-      <div class="color-cell header-cell">
-        <b>{{allowedVariant}}</b>
+<section class="c-section">
+  <div class="c-table">
+
+    {{#each (forIn colors) as |color| }}
+      <div class="row">
+        <div class="title is-color">{{itemAt color 0}}</div>
+        <div class="cr-grid cr-grid--gutters-none">
+          {{#each ../allowedVariants as |allowedVariant index|}}
+            {{#if (get (itemAt color 1) allowedVariant)}}
+              <div class="grid-cell grid-cell-shrink">
+                <div class="c-color-cta" title="color(${{itemAt color 0}}{{#if (nee allowedVariant 'base') }}, '{{allowedVariant}}'{{/if}})">
+                  <div class="color-frame" style="background-color: #{{get (itemAt color 1) allowedVariant}}{{#if (eeq (itemAt color 0) 'white') }}; outline: 1px solid #eee; outline-offset: -1px;{{/if}}"></div>
+                  <div class="content">
+                    <span class="title">{{allowedVariant}}</span>
+                    <span class="subtitle">#{{get (itemAt color 1) allowedVariant}}</span>
+                  </div>
+                </div>
+              </div>
+            {{/if}}
+          {{/each}}
+        </div>
       </div>
     {{/each}}
-  </div>
-  
-  {{#each (forIn colors) as |color| }}
-    <div class="color-row">
-      <div class="color-cell">
-        {{!-- color name --}}
-        <b>{{itemAt color 0}}</b><br>
-      </div>
-      {{#each ../allowedVariants as |allowedVariant index|}}
 
-        <div class="color-cell">
-          {{#if (get (itemAt color 1) allowedVariant)}}
-            <div class='color-circle' style=" background-color: #{{get (itemAt color 1) allowedVariant}}"></div>
-            #{{get (itemAt color 1) allowedVariant}}
-          {{/if}}
-        </div>
-      {{/each}}
-    </div>
-  {{/each}}
-</div>
+  </div>
+</section>

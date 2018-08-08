@@ -1,0 +1,120 @@
+////
+/// @grid
+////
+
+/// Sized gutters
+@mixin gridGutters($size) {
+  margin-left: -$size/2;
+  margin-right: -$size/2;
+
+  > .grid-cell {
+    padding-left: $size/2;
+    padding-right: $size/2;
+  }
+}
+
+/// Responsive behavior
+@mixin gridBreakpoint($size) {
+  @if ($size == xs) { @content; }
+  @if ($size == sm) { @include screenMoreThan(xs) { @content; } }
+  @if ($size == md) { @include screenMoreThan(sm) { @content; } }
+  @if ($size == lg) { @include screenMoreThan(md) { @content; } }
+}
+
+///
+@mixin makeResponsiveGrid($size) {
+  @include gridBreakpoint($size) {
+    @for $i from 1 through $grid-cells {
+      > .grid-cell-#{$size}-#{$i} {
+        @include grid-column($i);
+      }
+
+      > .grid-cell-#{$size}-shrink { flex: 0 1 auto; }
+    }
+  }
+}
+
+///
+@mixin grid($gutters: $spacing-md) {
+  @include gridGutters($gutters);
+
+  display: flex;
+  flex-wrap: wrap;
+
+  > .grid-cell {
+    flex: 1;
+    min-width: 0; // Firefox fix
+
+    &.grid-cell-shrink {
+      flex: 0 1 auto;
+    }
+  }
+
+  // Grid cells columns
+  @for $i from 1 through $grid-cells {
+    > .grid-cell-#{$i} {
+      @include grid-column($i);
+    }
+  }
+
+  // Variations
+
+  // Alignment variations
+  &--top { align-items: flex-start; }
+  &--middle { @include grid-middle; }
+  &--bottom { align-items: flex-end; }
+  &--center { @include grid-center; }
+
+  // Bordered
+  &--bordered {
+    @include grid-bordered;
+  }
+
+  // Responsive behavior
+  @include makeResponsiveGrid(xs);
+  @include makeResponsiveGrid(sm);
+  @include makeResponsiveGrid(md);
+  @include makeResponsiveGrid(lg);
+}
+
+/// Responsive Grid
+@mixin grid-bp($bp, $gutters: $spacing-md) {
+  @include screenMoreThan($bp) {
+    @include grid($gutters);
+  }
+}
+
+///
+@mixin grid-middle() {
+  align-items: center;
+}
+
+///
+@mixin grid-center() {
+  justify-content: center;
+}
+
+///
+@mixin grid-bordered($border-style: $divider-border) {
+  > .grid-cell {
+    border-bottom: $border-style;
+
+    &:not(:first-child) {
+      border-left: $border-style;
+    }
+  }
+}
+
+///
+@mixin grid-column($span) {
+  flex: none;
+  width: #{ 100% / $grid-cells * $span};
+}
+
+///
+@mixin grid-column-bp($bp, $span) {
+  @if ($bp == xs) { @include grid-column($span); }
+  @if ($bp == sm) { @include screenMoreThan(xs) { @include grid-column($span); } }
+  @if ($bp == md) { @include screenMoreThan(sm) { @include grid-column($span); } }
+  @if ($bp == lg) { @include screenMoreThan(md) { @include grid-column($span); } }
+}

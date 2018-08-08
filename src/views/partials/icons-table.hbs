@@ -1,0 +1,25 @@
+
+<div id="iconsTableContainer" class="c-icons-table">
+
+  {{#each icons as |icon|}}
+    <div class="item">
+      <label>
+        <input type="radio" id="{{icon.name}}" name="icons" class="icon-radio"/>
+        <div class="icon-code">{{{icon.content}}}</div>
+        <span class="icon-name">{{icon.name}}</span>
+      </label>
+    </div>
+  {{/each}}
+
+</div>
+
+{{!-- Pass handelbar vars to JS --}}
+<script>
+  if (window.DynamicStyleGuide) {
+    window.DynamicStyleGuide = Object.assign(window.DynamicStyleGuide, {iconContainerTemplate: '{{{iconContainerTemplate}}}'})
+  } else {
+    window.DynamicStyleGuide = {
+      iconContainerTemplate: '{{{iconContainerTemplate}}}'
+    }
+  }
+</script>

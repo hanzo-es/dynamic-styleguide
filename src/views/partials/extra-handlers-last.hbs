@@ -1,0 +1,12 @@
+{{#with handlerData}}
+  {{!-- Colors special handler --}}
+  {{#if (and colors allowedVariants)}}
+    {{> colors_grid allowedVariants=allowedVariants colors=colors}}
+  {{/if}}
+
+  {{!-- typeset special handler --}}
+  {{#if typeset}}
+    {{> typeset_list typeset=typeset }}
+  {{/if}}
+
+{{/with}}

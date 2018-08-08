@@ -1,0 +1,31 @@
+@import 'ui/index';
+
+.c-typesets-table {
+  padding: spacing(9); 
+
+  > .item {
+    margin-bottom: spacing(10);
+  }
+
+  .name {
+    @include useType(helvetica);
+
+    > span {
+      text-transform: none;
+    }
+  }
+
+  .breakpoint {
+    @include useType(helvetica-sm);
+    margin-top: spacing(3);
+    color: color($santas-grey);
+  }
+
+  .render {
+  }
+
+  .attrs {
+    @include useType(code);
+    color: color($santas-grey);
+  }
+}

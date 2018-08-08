@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="18px" viewBox="0 0 20 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="icon-/-app-filter" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M11,14 L20,14" id="Stroke-4" stroke="#2C3136" stroke-width="2"></path>
+        <circle id="Oval-2" stroke="#2C3136" stroke-width="2" cx="8" cy="14" r="3"></circle>
+        <path d="M0,14 L5.5,14" id="Stroke-3" stroke="#2C3136" stroke-width="2"></path>
+        <path d="M15,4 C15,4 16.6666667,4 20,4" id="Stroke-2" stroke="#2C3136" stroke-width="2"></path>
+        <circle id="Oval-1" stroke="#2C3136" stroke-width="2" cx="12" cy="4" r="3"></circle>
+        <path d="M0,4 L9,4" id="Stroke-1" stroke="#2C3136" stroke-width="2"></path>
+    </g>
+</svg>

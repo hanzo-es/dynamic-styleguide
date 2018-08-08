@@ -1,0 +1,27 @@
+@import 'ui/index';
+
+///
+/// @group icon
+///
+/// @variants disjunction - Look
+/// cr-icon--no-stroke : remove stroke style
+/// cr-icon--no-fill : remove fill style
+///
+/// @variants exclusive - Stroke Color
+/// cr-icon--stroke-pink : pink stroke
+/// cr-icon--stroke-grey : grey stroke
+/// cr-icon--stroke-blue : blue stroke
+/// cr-icon--stroke-white : white stroke
+/// cr-icon--stroke-black : black stroke
+///
+/// @variants exclusive - Fill Color
+/// cr-icon--fill-pink : pink fill
+/// cr-icon--fill-grey : grey fill
+/// cr-icon--fill-blue : blue fill
+/// cr-icon--fill-white : white fill
+/// cr-icon--fill-black : black fill
+///
+
+.cr-icon {
+  // Icons styles to be compiled
+}

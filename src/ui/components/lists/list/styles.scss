@@ -1,0 +1,22 @@
+@import 'ui/index';
+
+.c-list {
+  padding: spacing(12); 
+
+  // child lists
+  li & {
+    padding: spacing(5); 
+  }
+  
+  > li {
+    @include useType(helvetica-lg);
+    padding: spacing(2) 0;
+
+    a {
+      @include useType(helvetica-medium);
+      display: block;
+      text-transform: none;
+    }
+  }
+
+}

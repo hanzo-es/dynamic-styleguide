@@ -1,0 +1,28 @@
+@import 'ui/index';
+
+.c-table {
+  overflow: hidden;
+
+  > .header {
+    padding-bottom: spacing(5);
+  }
+
+  > .row {
+    padding: spacing(5) 0;
+
+    .cell-subtitle {
+      display: block;
+      margin-top: spacing(3);
+    }
+
+    > .title {
+      @include useType(helvetica-lg);
+      padding-bottom: $spacing-xs;
+
+      &.is-color {
+        padding-bottom: $spacing-sm;
+      }
+    }
+  }
+
+}

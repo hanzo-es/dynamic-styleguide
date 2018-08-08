@@ -1,0 +1,7 @@
+{
+    "partial": "ui/components/misc/counter/template.html",
+    "context": {
+        "variants": "{{variant}}",
+        "value": "99"
+    }
+}

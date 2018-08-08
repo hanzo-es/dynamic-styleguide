@@ -1,3 +1,6 @@
+import NanoEvents from 'nanoevents';
+const emitter = new NanoEvents();
+
 class InternalComponentClassMapper {
   static mapClass(queriedComponents, ClassDef) {
     const result = {
@@ -19,6 +22,7 @@ class InternalComponentClassMapper {
 class BaseComponent {
   constructor($el) {
     this.$el = $el;
+    this.emitter = emitter;
     this.init();
   }
 

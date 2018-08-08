@@ -1,6 +1,0 @@
-{
-    "partial": "ui/components/hugo/month/template.html",
-    "context": {
-        "variants": ""
-    }
-}

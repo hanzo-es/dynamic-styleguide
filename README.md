@@ -14,7 +14,7 @@ First, add this project as a npm development dependency in your `package.json` f
 
 ```json
   "devDependencies": {
-    "dynamic-styleguide": "^1.1.0"
+    "dynamic-styleguide": "^1.2.0"
   }
 ```
 
@@ -104,7 +104,7 @@ In the same file, but in the scripts node, add `"styleguide": "dynamic-styleguid
  - `folder` defines witch folder will be handled
  - `loaderName` is the loader file name that will be use
  - `config` is the extra data that will be passed to the loader
-The array defined above contains the extra handlers that will be loaded by default.
+Take a look at the `default.config.json` file to check what are the handlers implemented by default. For more info go to [Extra handlers](#extra-handlers)
 
 ## Expected UI folder structure
 
@@ -207,6 +207,7 @@ The data that the loader(s) return will be passed to the element template.
 The element's folders that have defined extra handler are:
 - `core/colors`
 - `core/typography`
+- `core/icons`
 
 ### Available handlers
 
@@ -271,6 +272,18 @@ $font-typeset: (
   ...
 ```
 
+#### Icons table
+Used to render a table with all the svg icon files from the `assets` folder. These icons are clickable, which will update the editor and the rendered example, applying the selected variants too.
+```
+  {
+    "folder": "core/icons",
+    "loaderName": "icons-table.loader",
+    "config": {
+      "containerTemplate": "<span class=\"cr-icon {{variant}}\">{{content}}</span>"
+    }
+  }
+```
+ - `containerTemplate`: Is the HTML template into which the SVG code will be injected, replacing the `{{content}}` key. Also `{{variant}}` need to be defined in order to apply the icon's variants.
 ## Running it
 
 To run the project you need the assets to be present in `distFolder` (that depends on your project dev/builds strategy), then just run
@@ -287,7 +300,7 @@ If you did not before, add this project as a npm development dependency in your 
 
 ```json
   "devDependencies": {
-    "dynamic-styleguide": "^1.1.0"
+    "dynamic-styleguide": "^1.2.0"
   }
 ```
 Or using yarn

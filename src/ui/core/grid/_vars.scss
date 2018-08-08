@@ -1,0 +1,11 @@
+////
+/// @group grid
+////
+$grid-cells: 12;
+$border-width: 1px;
+
+///
+$divider-border: $border-width solid color(black);
+
+///
+$divider-border-white-smoke: $border-width solid color($white-smoke);

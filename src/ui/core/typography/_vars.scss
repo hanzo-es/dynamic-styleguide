@@ -69,5 +69,40 @@ $font-typeset: (
       font-size: 14px,
       line-height: 20px
     )
+  ),
+  helvetica-sm: (
+    xs: (
+      font-family: font(helvetica),
+      font-size: 11px,
+      line-height: 16px,
+      letter-spacing: .12em,
+      text-transform: uppercase,
+    )
+  ),
+  helvetica-medium: (
+    xs: (
+      font-family: font(helvetica),
+      font-size: 12px,
+      line-height: 18px,
+      letter-spacing: .12em,
+    )
+  ),
+  helvetica: (
+    xs: (
+      font-family: font(helvetica),
+      font-size: 14px,
+      line-height: 18px,
+      letter-spacing: .12em,
+      text-transform: uppercase,
+    )
+  ),
+  helvetica-lg: (
+    xs: (
+      font-family: font(helvetica),
+    font-size: 18px,
+      line-height: 20px,
+      letter-spacing: .12em,
+      text-transform: uppercase,
+    )
   )
 );

@@ -1,0 +1,7 @@
+{{#with handlerData}}
+
+  {{!-- icons special handler --}}
+  {{#if (and icons iconContainerTemplate)}}
+    {{> icons_table icons=icons }}
+  {{/if}}
+{{/with}}

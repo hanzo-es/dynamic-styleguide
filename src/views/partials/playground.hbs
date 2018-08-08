@@ -22,6 +22,7 @@
     {{#if examples.length }}
       {{#> section title=(ter variants "Variants" "") }}
         {{#*inline "slot-content"}}
+          {{> extra_handlers_first this }}
           {{> playground_variants }}
           {{> playground_editor }}
         {{/inline}}
@@ -33,14 +34,6 @@
         {{/inline}}
       {{/section }}
     {{/if}}
-    {{#with handlerData}}
-      {{!-- Colors special handler --}}
-      {{#if (and colors allowedVariants)}}
-        {{> colors_grid allowedVariants=allowedVariants colors=colors}}
-      {{/if}}
-      {{#if typeset}}
-        {{> typeset_list typeset=typeset }}
-      {{/if}}
-    {{/with}}
+    {{> extra_handlers_last this }}
   </div>
 </div>

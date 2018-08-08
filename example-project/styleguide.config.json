@@ -22,7 +22,7 @@
     "pageTitle": "Hanzo Style Guide",
     "logo": {
       "alt": "back to home",
-      "content": "<img src=\"/assets/images/hanzo-logo.png\" width=\"140px\" height=\"42px\">",
+      "content": "<img src=\"/assets/images/hanzo-logo.png\">",
       "href": "/"
     }
   }

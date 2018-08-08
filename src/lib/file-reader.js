@@ -7,6 +7,11 @@ const dirsList = (rootDir) => {
   return files.reduce((acc, file) => fs.statSync(rootDir + '/' + file).isDirectory() ? acc.concat(file) : acc, []);
 };
 
+const filesList = (rootDir) => {
+  const files = fs.readdirSync(rootDir);
+  return files.reduce((acc, file) => fs.statSync(rootDir + '/' + file).isDirectory() ? acc : acc.concat(file), []);
+};
+
 const loadIfExistOrNull = (filePath) => fs.existsSync(filePath) ? fs.readFileSync(filePath, 'utf8') : null;
 
 const loadUserPackagesJson = () =>
@@ -14,6 +19,7 @@ const loadUserPackagesJson = () =>
 
 module.exports = {
   dirsList,
+  filesList,
   loadIfExistOrNull,
   loadUserPackagesJson,
 };

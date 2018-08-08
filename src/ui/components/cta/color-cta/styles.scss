@@ -1,0 +1,26 @@
+@import 'ui/index';
+
+.c-color-cta {
+  cursor: pointer;
+
+  > .color-frame {
+    height: spacing(25);
+    width: spacing(20);
+  }
+
+  > .content {
+    @include useType(helvetica-medium);
+    padding-top: $spacing-unit;
+    display: flex;
+    flex-direction: column;
+
+    > .title {
+      text-transform: capitalize;
+    }
+
+    > .subtitle {
+      @include useType(helvetica-sm);
+    }
+  }
+  
+}

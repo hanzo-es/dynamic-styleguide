@@ -20,6 +20,7 @@ class PlaygroundModule extends BaseComponent {
   addEvents() {
     this.$el.addEventListener('change', this.playgroundVariantsUpdated.bind(this));
     this.editorComponent.onChange(this.playgroundEditorUpdated.bind(this));
+    this.unbindPlaygroundUpdateContent = this.emitter.on('playgroundUpdateContent', this.playgroundContentUpdated.bind(this));
   }
 
   getActiveVariants() {
@@ -36,12 +37,19 @@ class PlaygroundModule extends BaseComponent {
 
   removeEvents() {
     this.editorComponent.$el.removeEventListener('change', this.playgroundEditorUpdated);
+    this.unbindPlaygroundUpdateContent();
   }
 
   playgroundVariantsUpdated() {
     const variants = this.getActiveVariants();
     this.editorComponent.updateVariants(variants);
     this.rendererComponent.updateVariants(variants);
+  }
+
+  playgroundContentUpdated(event, template) {
+    const variants = this.getActiveVariants();
+    this.editorComponent.updateVariants(variants, template);
+    // FIX: How do we update the new window content?
   }
 
   playgroundEditorUpdated(data) {

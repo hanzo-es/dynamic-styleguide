@@ -51,7 +51,7 @@ class PlaygroundEditorComponent extends BaseComponent {
     // Init the editable example. One and only one is expected
     this.$textArea = this.$el.querySelector('.codemirror-textarea-editable');
     this.originalValue = this.$textArea.defaultValue;
-    this._replaceContent(PlaygroundEditorComponent.settings.VARIANT_REF, '');
+    this._replaceContent(PlaygroundEditorComponent.settings.VARIANT_REF, '', this.originalValue);
     this.codeMirrorHelper = new CodeMirrorHelper(this.$textArea);
     this.updateEditor(this.$textArea.value);
 
@@ -74,16 +74,17 @@ class PlaygroundEditorComponent extends BaseComponent {
     this.codeMirrorHelper.update(newVal);
   }
 
-  updateVariants(variantClassNames) {
+  updateVariants(variantClassNames, template) {
     this._replaceContent(
       PlaygroundEditorComponent.settings.VARIANT_REF,
-      variantClassNames.join(' ')
+      variantClassNames.join(' '),
+      template
     );
     this.updateEditor(this.$textArea.value);
   }
 
-  _replaceContent(ref, content) {
-    this.$textArea.value = this.originalValue.replace(ref, content);
+  _replaceContent(ref, content, template = this.originalValue) {
+    this.$textArea.value = template.replace(ref, content);
   }
 }
 

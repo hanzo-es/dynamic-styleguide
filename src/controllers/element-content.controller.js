@@ -13,7 +13,7 @@ const loadElementDetails = (req, res) => {
       stylesheets,
       scripts,
       ...payload,
-      layout: false,
+      layout: 'layout-content.hbs',
     });
   });
 };
