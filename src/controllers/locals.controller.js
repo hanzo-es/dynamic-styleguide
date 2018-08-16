@@ -24,7 +24,7 @@ const setLocals = (req, res, next) => {
     process.env.BROWSER_REFRESH_URL,
     '/styleguide-assets/app.js'
   ];
-  res.locals.title = pageTitle;
+  res.locals.pageTitle = pageTitle;
   res.locals.logo = logo || {};
   res.locals.sideMenuLinks = sideMenuLinks || [];
   res.locals.elementsUrlDirectory = elementsUrlDirectory || DEFAULT_ELEMENTS_URL_DIRECTORY;

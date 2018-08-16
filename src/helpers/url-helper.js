@@ -43,7 +43,7 @@ const createPageStructure = (urls, opts) => {
     slug: ''
   };
   const { slug } = {...defaultOptions, ...opts};
-  const htmlFileRegEx = /.+\.html/;
+  const htmlFileRegEx = /.+\.html/i;
   const ignoreInitialSlashRegEx = /^\/?(.+)$/;
 
 
