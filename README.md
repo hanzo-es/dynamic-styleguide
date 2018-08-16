@@ -14,7 +14,7 @@ First, add this project as a npm development dependency in your `package.json` f
 
 ```json
   "devDependencies": {
-    "dynamic-styleguide": "^1.2.1"
+    "dynamic-styleguide": "^1.2.2"
   }
 ```
 
@@ -300,7 +300,7 @@ If you did not before, add this project as a npm development dependency in your 
 
 ```json
   "devDependencies": {
-    "dynamic-styleguide": "^1.2.1"
+    "dynamic-styleguide": "^1.2.2"
   }
 ```
 Or using yarn
