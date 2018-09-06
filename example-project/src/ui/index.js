@@ -13,4 +13,4 @@ import './components/misc/hello';
 import './components/misc/counter';
 
 // Modules
-// import './modules/footer';
+import './modules/other';

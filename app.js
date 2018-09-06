@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const { folders } = require('./src/helpers/constants');
+const sitemapGenerator = require('./src/scripts/sitemap-generator');
 
 // INIT APP
 const app = express();
@@ -26,6 +27,8 @@ app.use(function(req, res) {
     title: '404: File Not Found'
   });
 });
+
+sitemapGenerator();
 
 // Handle 500
 app.use(function(error, req, res) {

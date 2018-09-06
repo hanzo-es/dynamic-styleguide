@@ -14,7 +14,7 @@ First, add this project as a npm development dependency in your `package.json` f
 
 ```json
   "devDependencies": {
-    "dynamic-styleguide": "^1.2.2"
+    "dynamic-styleguide": "^1.3.0"
   }
 ```
 
@@ -32,6 +32,7 @@ In the same file, but in the scripts node, add `"styleguide": "dynamic-styleguid
   "parent": "base.config.json",
   "uiFolder": "ui",
   "distFolder": "demo-dist",
+  "elementsSitemapFile": "demo-dist/sitemap.xml",
   "deployPort": 3000,
   "bundled": {
     "css" : [
@@ -82,6 +83,7 @@ In the same file, but in the scripts node, add `"styleguide": "dynamic-styleguid
  - `parent` references another config file from which the current one will 'extends'.
  - `uiFolder` defines the folder where the components to display are placed. 
  - `distFolder`, where your compiled/transposed files need to be rendered from.
+ - `elementsSitemapFile`, if this is defined, a xml will be written to its defined file, specifying the site map of 'components' and 'modules'
  - `deployPort` defines which port will be used, by default it is `3000`.
  - `bundled` defines the routes to the specific files that will be loaded.
  - `elementsUrlDirectory` is the the first part of the URL path under which the elements pages will be rendered. The default value is `view` and can not be empty.
@@ -300,7 +302,7 @@ If you did not before, add this project as a npm development dependency in your 
 
 ```json
   "devDependencies": {
-    "dynamic-styleguide": "^1.2.2"
+    "dynamic-styleguide": "^1.3.0"
   }
 ```
 Or using yarn

@@ -1,0 +1,43 @@
+@import 'ui/index';
+@import 'vars';
+
+/// This is the other module
+/// @group m-other
+///
+/// @variants exclusive - color
+/// m-other--green: Change the color to green
+/// m-other--transparent: Change the color to transparent
+///
+/// @variants exclusive - padding
+/// m-other--medium: Change the padding to medium
+/// m-other--big: Change the padding to big
+
+.m-other {
+  display: inline-block;
+  width: 100%;
+  min-height: $spacing-xs * 4;
+  padding: $spacing-xs;
+
+  background-color: $other-orange;
+  border: 1px solid $other-orange;
+  border-radius: 5px;
+
+  // Variants
+  &--green {
+    background-color: $other-green;
+    border-color: $other-green;
+  }
+
+  &--transparent {
+    background-color: transparent;
+    border-color: black;
+  }
+
+  &--medium {
+    padding: $spacing-xs * 2;
+  }
+
+  &--big {
+    padding: $spacing-xs * 4;
+  }
+}

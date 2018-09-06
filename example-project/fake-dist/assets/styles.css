@@ -185,3 +185,27 @@ h1{
   height: 18px;
   line-height: 18px!important;
 }
+
+.m-other {
+  display: inline-block;
+  width: 100%;
+  min-height: 32px;
+  padding: 8px;
+  background-color: #EEAA40;
+  border: 1px solid #EEAA40;
+  border-radius: 5px;
+}
+.m-other--green {
+  background-color: #BDEA54;
+  border-color: #BDEA54;
+}
+.m-other--transparent {
+  background-color: transparent;
+  border-color: black;
+}
+.m-other--medium {
+  padding: 16px;
+}
+.m-other--big {
+  padding: 32px;
+}

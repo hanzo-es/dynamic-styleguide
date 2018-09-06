@@ -1,0 +1,3 @@
+<div class="m-other {{variant}}">
+  This is the "other" module, nothing impressive
+</div>

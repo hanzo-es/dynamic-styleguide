@@ -11,3 +11,5 @@ dist/
 LICENSE
 package*
 yarn*
+
+example-project/fake-dist/elementsSitemap.xml

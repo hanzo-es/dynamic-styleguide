@@ -18,3 +18,5 @@ dist
 npm-debug.log
 .bundle
 .yarn-error.log
+
+example-project/fake-dist/elementsSitemap.xml

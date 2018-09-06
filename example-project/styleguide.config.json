@@ -2,6 +2,7 @@
   "projectType": "hugo",
   "uiFolder": "src/ui",
   "distFolder": "fake-dist",
+  "elementsSitemapFile": "fake-dist/elementsSitemap.xml",
   "bundled": {
     "css" : [
       "assets/styles.css"
